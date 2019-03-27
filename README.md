@@ -2,7 +2,7 @@
 
 ## Description
 
-Describe your project in one/two lines.
+It's a single page application where you can participate in a game to win a car.
 
 ## User Stories
 
@@ -10,28 +10,24 @@ Describe your project in one/two lines.
 -  **Signup:** As an anon I can sign up in the platform so that I can start saving favorite restaurants
 -  **Login:** As a user I can login to the platform so that I can see my favorite restaurants
 -  **Logout:** As a user I can logout from the platform so no one else can use it
--  **Add Restaurants** As a user I can add a restaurant so that I can share it with the community
--  **List Restaurants** As a user I want to see the restaurants so that I can choose one to eat
--  **Search Restaurants** As a user I want to search restaurants by name so that I know if it´s already in the platform
--  **Add to favorites** As a user I want to add a restaurant to favorite so that I can save the restaurants that I liked the most
--  **See my favorites** As a user I want to see my favorite restaurantes so that I can see the ones I liked the most
+-  **Add Cars** As a administrator I can add a car so that the users can play for it
+-  **Participate to the game** As a user I can select any car and I can play for win it. (Backlog)
+-  **Profile** As a user I can edit my profile so no one else can edit my profile.
+-  **Detail Cars** As a user I can view de detail cars so I can decide play for it
+-  **Add to Cart** As a user I can select a car so I can pay for it
 
 ## Backlog
 
-User profile:
-- see my profile
-- upload my profile picture
-- see other users profile
-- list of events created by the user
-- list events the user is attending
-
-Geo Location:
-- add geolocation to events when creating
-- show event in a map in event detail page
-- show all events in a map in the event list page
-
 Homepage:
-- ...
+- on mobile, the cars are show in stack
+
+Game:
+
+- add a video game
+
+Checkout
+
+- Pay for participate
 
 # Client
 
@@ -42,23 +38,19 @@ Homepage:
 | `post` | `/auth/signup` | SignupPageComponent | anon only   | signup form, link to login, navigate to homepage after signup |
 | `post` | `/auth/login`  | LoginPageComponent  | anon only   | login form, link to signup, navigate to homepage after login |
 | `post` | `/auth/logout` | n/a                 | anon only   | navigate to homepage after logout, expire session            |
-| `get`  | `/restaurants` | RestaurantListPageComponent| public | shows all restaurants, links to details, search restaurants by name
-| `post` | `/restaurants` | RestaurantCreatePageComponent | user only | creates a new restaurant, navigates to restaurant's detail page after creation
-| `put` | `/restaurants/:id` | RestaurantDetailPageComponent  | public/user | details of one restaurant, if logged in - button to add to favorite, show star if in favorites already
-| `delete` | `/restaurants/:id` | na | user only | delete resteraunt
-| `get` | `/profile/me` | ProfilePageComponent | user only | my details, my favorite restaurants, restaurants created by me
-| `get` | `**` | NotFoundPageComponent | public | 
-
+| `get`  | `/profile/:id` | ProfileComponent    | anon only   | view user profile                                            |
 
 
 
 ## Components
 
-- Restaurant Card component
-  - Input: restaurant: any
-  - Output: favorite(restaurantId: string, on: boolean)
+- Cars Card component
+  - Input: cars: administrator
+  - Output: participate(carsId: string, on: boolean)
 - Search component
-  - Output: change(terms: string)
+  - Output: cars(carsId: string)
+- Navbar component
+  - Cart Component
 
 
 ## Services
@@ -69,13 +61,14 @@ Homepage:
   - auth.logout()
   - auth.me()
   - auth.getUser() // synchronous
-- Restaurant Service
-  - restaurant.list()
-  - restaurant.search(terms)
-  - restaurant.create(data)
-  - restaurant.detail(id)
-  - restaurant.addFavorite(id)
-  - restaurant.removeFavorite(id)   
+- Cars Service
+  - cars.list()
+  - cars.search(terms)
+  - cars.create(data)
+- Participation Service
+  - participate.list(idUser)
+  - participate.add(idUser, idCar)
+  - participate.edit(idUser, idCars, position)
 
 # Server
 
@@ -87,17 +80,30 @@ User model
 username - String // required
 email - String // required & unique
 password - String // required
-favorites - [ObjectID<Restaurant>]
 ```
 
-Restaurant model
+Cars model
 
 ```
-owner - ObjectID<User> // required
 name - String // required
-phone - String
-address - String
+power - String // required
+retailPrice - String // required
+velocity - String // required
+torque - String // required
+contamination - String // required
+drivetrain - String // required
+imageUrl - String // required & default: sampleUrl
 ```
+
+Participation model
+
+```
+idUser - ObjectID<User> // required
+idCars - ObjectID<Cars> // required
+position - Number // required
+```
+
+## 
 
 ## API Endpoints (backend routes)
 
@@ -130,49 +136,35 @@ address - String
 - POST /auth/logout
   - body: (empty)
   - 204
-- POST /user/me/favorite
+- GET /cars
+  - status 200
+  - Object:
+    - Name car
+    - imageUrl
+    - Properties of Car
+- POST /cars
+  - 401 if user is not an administrator
   - body:
-    - restaurantId
+    - Name car
+    - imageUrl
+    - Properties of Car
   - validation
-    - id is valid (404)
-    - id exists (404)
-  - add to favorites if not there yet
-  - updates user in session
-- DELETE /user/me/favorite/:restaurantId
-  - validation
-    - id is valid (404)
-    - id exists (404)
-  - body: (empty - the user is already stored in the session)
-  - remove from favorites
-  - updates user in session
-- GET /restaurant?terms=foo
-  - use search criteria if terms provided
-  - 200 with array of restaurants
-- POST /restaurant
-  - body:
-    - name
-    - phone
-    - address
-  - validation
-    - fields not empty
-  - create restaurant
-  - 200 with restaurant object
-- GET /restaurant/:id
-
-  
+    - fields not empty (422)
+    - user not exists (409)
+  - 200 with user object
 
 ## Links
 
 ### Trello/Kanban
 
-[Link to your trello board](https://trello.com) or picture of your physical board
+[Trello Werifs](<https://trello.com/b/sHQlZArl/werifs>)
 
 ### Git
 
 The url to your repository and to your deployed project
 
-[Client repository Link](http://github.com)
-[Server repository Link](http://github.com)
+[Client repository Link](https://github.com/joansvich/werifs)
+[Server repository Link](https://github.com/joansvich/werifs-backend)
 
 [Deploy Link](http://heroku.com)
 
