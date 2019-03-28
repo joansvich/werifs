@@ -6,7 +6,9 @@ import Navbar from './components/Navbar';
 import Private from './pages/Private';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import HomePage from './pages/HomePage';
 import AuthProvider from './providers/AuthProvider';
+import ListCars from './components/ListCars';
 
 
 class App extends Component {
@@ -14,11 +16,10 @@ class App extends Component {
     return (
       <AuthProvider>
         <div className="container">
-          <h1>Module 3 boilerplate</h1>
           <Navbar />
-          <div className="banner">srNLKRH</div>
-          
+          <ListCars />
           <Switch>
+            <AnonRoute exact path="/" component={HomePage} />
             <AnonRoute path="/signup" component={Signup} />
             <AnonRoute path="/login" component={Login} />
             <PrivateRoute path="/private" component={Private} />

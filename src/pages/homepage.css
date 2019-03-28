@@ -1,0 +1,45 @@
+:root{
+  --color-primary: #a5eefb;
+  --grey: #555;
+  --white: #ffffff;
+  --font-primary: 'Ubuntu', sans-serif;
+}
+
+.homepage {
+  font-family: var(--font-primary);
+}
+
+.initial-banner {
+  background-image: url('/images/initial-banner.jpg');
+  background-size: cover;
+  display: flex;
+  width: 100vw;
+  height: 300px;
+  justify-content: center;
+  align-items: center;
+}
+
+.initial-banner h1 {
+  color: var(--white);
+  
+}
+
+.initial-banner-text {
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.how-works {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card-how-works {
+  width: 200px;
+  border: 2px solid var(--grey);
+  margin: 5px;
+  padding: 2px 10px;
+}
