@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import participationService from '../lib/participation-service';
+
 const MyContext = React.createContext();
 
 export const withParticipation = (Comp) => {
@@ -11,6 +12,8 @@ export const withParticipation = (Comp) => {
             <Comp
               participationState={value.participationState}
               addParticipation={value.addParticipation}
+              changeShowCard={value.changeShowCard}
+              {...this.props}
             />
           )
           }
@@ -26,6 +29,7 @@ class ParticipationProvider extends Component {
     listParticipation: [],
     showCard: false,
   }
+  
 
   componentDidMount() {
     this.getParticipation();
@@ -41,6 +45,7 @@ class ParticipationProvider extends Component {
       .catch((err)=>console.log(err));
   }
 
+
   addParticipation = (newParticipation) => {
     participationService.create(newParticipation)
       .then((data) => {
@@ -50,11 +55,21 @@ class ParticipationProvider extends Component {
         })
       })
   }
+
+  changeShowCard = () => {
+    if(this.state.showCard){
+      this.setState({
+        showCard:false
+      })
+    }
+  }
+
   render() {
     return (
       <MyContext.Provider value={{
         participationState: this.state,
-        addParticipation: this.addParticipation
+        addParticipation: this.addParticipation,
+        changeShowCard: this.changeShowCard
       }}>
         {this.props.children}
       </MyContext.Provider>

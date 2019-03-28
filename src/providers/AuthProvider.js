@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import authService from '../lib/auth-service';
 
+
 export const AuthContext = React.createContext(
   // authStore // default value
 );
