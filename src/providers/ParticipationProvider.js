@@ -29,12 +29,12 @@ class ParticipationProvider extends Component {
     listParticipation: [],
     showCard: false,
   }
-  
+
 
   componentDidMount() {
     this.getParticipation();
   }
-  
+
   getParticipation = () => {
     participationService.list()
       .then((listParticipation) => {
@@ -42,7 +42,7 @@ class ParticipationProvider extends Component {
           listParticipation
         })
       })
-      .catch((err)=>console.log(err));
+      .catch((err) => console.log(err));
   }
 
 
@@ -51,17 +51,16 @@ class ParticipationProvider extends Component {
       .then((data) => {
         this.getParticipation();
         this.setState({
-          showCard: true
+          showCard: true,
+          
         })
       })
   }
 
   changeShowCard = () => {
-    if(this.state.showCard){
-      this.setState({
-        showCard:false
-      })
-    }
+    this.setState({
+      showCard: !this.state.showCard
+    })
   }
 
   render() {

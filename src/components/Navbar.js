@@ -3,12 +3,24 @@ import { Link, withRouter } from 'react-router-dom';
 import { withAuth } from '../providers/AuthProvider';
 import './navbar.css'
 import Cart from '../components/Cart';
+import { withParticipation } from '../providers/ParticipationProvider';
 
 class Navbar extends Component {
+
+  handleClick = () => {
+    this.props.changeShowCard();
+  }
 
   render() {
     const { isLogged, user, logout } = this.props;
     const { username } = user;
+    let showBullet = false;
+    const countPart = this.props.participationState.listParticipation.length;
+    console.log(countPart);
+    console.log(showBullet);
+    if (countPart > 0) {
+      showBullet = true;
+    }
     if (isLogged) {
       return <div>
         <nav className="navbar">
@@ -19,7 +31,8 @@ class Navbar extends Component {
             <p className="link" onClick={logout}>Logout</p>
           </div>
           <div className="navbar-end">
-            <i className="fas fa-shopping-cart"></i>
+            { showBullet  && <div className="cart-bullet">{countPart}</div>}
+            <i onClick={this.handleClick} className="fas fa-shopping-cart"></i>
             <Cart />
           </div>
         </nav>
@@ -35,4 +48,4 @@ class Navbar extends Component {
   }
 
 }
-export default withRouter(withAuth(Navbar));
+export default withRouter(withAuth(withParticipation(Navbar)));

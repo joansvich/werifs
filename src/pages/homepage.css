@@ -1,10 +1,10 @@
-:root{
+:root {
   --color-primary: #a5eefb;
   --grey: #555;
   --white: #ffffff;
 }
 
-.homepage h1{
+.homepage h1 {
   text-align: center;
 }
 
@@ -20,7 +20,6 @@
 
 .initial-banner h1 {
   color: var(--white);
-  
 }
 
 .initial-banner-text {
@@ -37,13 +36,37 @@
 }
 
 .card-how-works {
+  margin: 20px;
+  padding: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+  border-radius: 8px;
   width: 200px;
-  border: 2px solid var(--grey);
-  margin: 5px;
-  padding: 2px 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.list-cars{
+.card-how-works-img {
+  width: 100px;
+  height: 150px;
+  padding: 20px;
+}
+
+.card-how-works-img img {
+  width: 100%;
+  height: auto;
+}
+
+.card-how-works-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #555;
+}
+
+.list-cars {
   display: flex;
   flex-direction: row-reverse;
   flex-wrap: wrap;

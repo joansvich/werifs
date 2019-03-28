@@ -55,3 +55,18 @@
   color: #f50;
   transition: all 0.2s ease-out;
 }
+
+.cart-bullet {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: red;
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  top: 5px;
+  right: 36px;
+  font-size: 14px;
+  color: #fff;
+}

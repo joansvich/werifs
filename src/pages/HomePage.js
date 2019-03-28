@@ -42,13 +42,22 @@ class HomePage extends Component {
           <h1>¿Cómo funciona?</h1>
           <div className="how-works">
             <div className="card-how-works">
-              <h2>Selecciona el coche que quieres</h2>
+              <div className="card-how-works-img">
+                <img src="./images/icon-select-car.png" alt="" />
+              </div>
+              <p className="card-how-works-title">Selecciona el coche que quieres</p>
             </div>
             <div className="card-how-works">
-              <h2>Juega al juego</h2>
+              <div className="card-how-works-img">
+                <img src="./images/icon-game.png" alt="" />
+              </div>
+              <p className="card-how-works-title">Juega al juego</p>
             </div>
             <div className="card-how-works">
-              <h2>Cada mes un coche</h2>
+              <div className="card-how-works-img">
+                <img src="./images/icon-win.png" alt="" />
+              </div>
+              <p className="card-how-works-title">Cada mes un coche</p>
             </div>
           </div>
         </section>
@@ -58,7 +67,7 @@ class HomePage extends Component {
             {this.state.isLoading ? <p>'Loading ....'</p> : this.renderCarList()}
           </div>
         </section>
-      </div>
+      </div >
     );
   }
 }

@@ -6,10 +6,12 @@ class CarCard extends Component {
     const { _id, name, power, retailPrice, velocity, torque, contamination, drivetrain, imageUrl } = this.props.car;
     return (
       <div className="car-card">
-        <img src={imageUrl} alt="foto car" width="100px"/>
+        <div className="car-card-img">
+          <img src={imageUrl} alt="foto car"  />
+        </div>
         <h2>{name}</h2>
         <p>CV: {power}</p>
-        <ButtonParticipation 
+        <ButtonParticipation
           idCar={_id}
         />
       </div>
