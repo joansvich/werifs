@@ -1,4 +1,46 @@
-#link:hover{
-  color:#777;
+.navbar {
+  font-family: var(--font-primary);
+  width: 100vw;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: var(--color-primary);
+  position: fixed;
+  justify-content: space-between;
+}
+
+.navbar-start{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.fas {
+  padding: 20px;
+  color: white;
+  font-size: 30px;
+}
+
+.fas:hover{
+  cursor: pointer;
+  color: #777;
+  transition: all 0.2s ease-out;
+}
+
+
+.navbar .link {
+  text-decoration: none;
+  font-weight: 500;
+  margin: 0;
+  padding: 10px;
+  color: white;
+}
+
+.navbar .link:hover {
+  cursor: pointer;
+  color: #777;
   transition: all 0.2s ease-out;
 }

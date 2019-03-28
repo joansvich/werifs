@@ -1,0 +1,14 @@
+:root {
+  --font: 'Ubuntu', sans-serif;
+}
+html {
+  font-family: var(--font);
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.body {
+  padding-top: 60px;
+}

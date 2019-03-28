@@ -1,0 +1,12 @@
+.form-button-participation {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-button-participation button {
+  margin: 0 20px;
+  height: 20px;
+}

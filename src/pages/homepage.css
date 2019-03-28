@@ -2,11 +2,10 @@
   --color-primary: #a5eefb;
   --grey: #555;
   --white: #ffffff;
-  --font-primary: 'Ubuntu', sans-serif;
 }
 
-.homepage {
-  font-family: var(--font-primary);
+.homepage h1{
+  text-align: center;
 }
 
 .initial-banner {
@@ -42,4 +41,11 @@
   border: 2px solid var(--grey);
   margin: 5px;
   padding: 2px 10px;
+}
+
+.list-cars{
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  justify-content: center;
 }
