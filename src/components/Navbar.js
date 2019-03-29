@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { withAuth } from '../providers/AuthProvider';
+import { compose } from 'recompose';
 import './navbar.css'
 import Cart from '../components/Cart';
 import { withParticipation } from '../providers/ParticipationProvider';
@@ -16,27 +17,27 @@ class Navbar extends Component {
     const { username } = user;
     let showBullet = false;
     const countPart = this.props.participationState.listParticipation.length;
-    console.log(countPart);
-    console.log(showBullet);
     if (countPart > 0) {
       showBullet = true;
     }
     if (isLogged) {
-      return <div>
+      return <>
         <nav className="navbar">
-          <div className="navbar-start">
-            <p>Username: {username}</p>
-            <Link className="link" to='/'>Home</Link>
-            <Link className="link" to='/create'>Create Cars</Link>
-            <p className="link" onClick={logout}>Logout</p>
-          </div>
-          <div className="navbar-end">
-            { showBullet  && <div className="cart-bullet">{countPart}</div>}
-            <i onClick={this.handleClick} className="fas fa-shopping-cart"></i>
-            <Cart />
+          <div className="container flex">
+            <div className="navbar-start">
+              <p>Username: {username}</p>
+              <Link className="link" to='/'>Home</Link>
+              <Link className="link" to='/create'>Create Cars</Link>
+              <p className="link" onClick={logout}>Logout</p>
+            </div>
+            <div className="navbar-end">
+              {showBullet && <div className="cart-bullet">{countPart}</div>}
+              <i onClick={this.handleClick} className="fas fa-shopping-cart"></i>
+              <Cart />
+            </div>
           </div>
         </nav>
-      </div>
+      </>
     } else {
       return <div>
         <Link to='/login'>Login</Link>
@@ -48,4 +49,5 @@ class Navbar extends Component {
   }
 
 }
-export default withRouter(withAuth(withParticipation(Navbar)));
+// export default withRouter(withAuth(withParticipation(Navbar)));
+export default compose(withRouter, withAuth, withParticipation)(Navbar);

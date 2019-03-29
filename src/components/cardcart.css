@@ -1,24 +1,26 @@
 .card-cart-car {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
   margin: 20px;
   padding: 10px;
   background-color: #ffffff;
   box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
   border-radius: 8px;
+  max-width: 400px;
+}
+.card-cart-car h1, .card-cart-car p {
+  margin: 5px 0;
 }
 
 .card-cart-car-image {
   align-self: center;
-  flex-grow: 1;
   text-align: center;
+  flex-grow: 1;
+  width: 50%;
+  object-fit: cover;
 }
 
 .card-cart-car-image img {
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  height: auto;
 }
 
 .card-cart-car-info {
@@ -26,5 +28,6 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  max-width: 50%;
   flex-grow: 1;
 }

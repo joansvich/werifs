@@ -2,13 +2,11 @@
   font-family: var(--font-primary);
   width: 100vw;
   height: 60px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
   background-color: var(--color-primary);
   position: fixed;
-  justify-content: space-between;
+  z-index: 2;
+  top: 0;
+  left: 0;
 }
 
 .navbar-start{
@@ -16,6 +14,10 @@
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
+}
+
+.navbar-end {
+  position: relative;
 }
 
 .fas {

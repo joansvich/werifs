@@ -3,9 +3,7 @@
   right: 10px;
   position: fixed;
   border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  text-align: center;
   overflow-y: scroll;
   height: auto;
   max-height: 80vh;

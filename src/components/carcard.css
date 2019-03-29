@@ -1,20 +1,48 @@
 .car-card {
-  margin: 20px;
-  padding: 10px;
+  margin: 1%;
   background-color: #ffffff;
   box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
   border-radius: 8px;
-  width: 200px;
+  width: 30%;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+  overflow: hidden;
 }
-.car-card-img {
-  
+
+.car-card:hover .description {
+  bottom: 0;
 }
-.car-card-img img{
+
+.description {
+  position: absolute;
+  background: white;
+  padding: 0 30px;
+  left: 0;
+  bottom: -179px;
+  transition: bottom 0.3s ease-in-out;
+}
+
+.car-details {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.car-details ul {
+  list-style: none;
+  padding: 0;
+  flex-basis: 50%;
+}
+
+.pj-card img {
+  object-fit: cover;
+  height: 300px;
   width: 100%;
-  height: auto;
+  -webkit-transition: .8s;
+  -moz-transition: .8s;
+  transition: .8s;
 }

@@ -61,7 +61,7 @@ class HomePage extends Component {
             </div>
           </div>
         </section>
-        <section>
+        <section className="container">
           <h1>Coches disponibles</h1>
           <div className="list-cars">
             {this.state.isLoading ? <p>'Loading ....'</p> : this.renderCarList()}

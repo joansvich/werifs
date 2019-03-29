@@ -23,7 +23,7 @@ class App extends Component {
     return (
       <AuthProvider>
         <ParticipationProvider>
-          <div className="container">
+          <div>
             <Navbar />
             <div className="body">
               <Switch>

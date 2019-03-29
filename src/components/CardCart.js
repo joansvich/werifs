@@ -11,7 +11,7 @@ class CardCart extends Component {
     const { name, imageUrl } = this.props.part.idCar
     const { numParticipations } = this.props.part;
     return (
-      <div className="card-cart-car">
+      <div className="card-cart-car flex">
         <div className="card-cart-car-image">
           <img src={imageUrl} alt="foto car" />
         </div>

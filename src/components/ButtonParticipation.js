@@ -27,6 +27,9 @@ class ButtonParticipation extends Component {
       numParticipations: this.state.numParticipations
     }
     this.props.addParticipation(newParticipation);
+    this.setState({
+      numParticipations: 0
+    })
   }
 
   render() {
@@ -37,6 +40,7 @@ class ButtonParticipation extends Component {
           <button name="-" value="-1" onClick={this.handleClick}>-</button>
           <p>{numParticipations}</p>
           <button name="+" value="1" onClick={this.handleClick}>+</button>
+          <p>Participaciones</p>
           <button onClick={this.handleClickAdd}>Add</button>
         </div>
       </div>
