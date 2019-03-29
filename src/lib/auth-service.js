@@ -14,6 +14,12 @@ class AuthService {
       .then(({ data }) => data);
   }
 
+  update(user) {
+    const { username, password, adress, phone, email, imageUrl } = user;
+    return this.auth.put('/profile/', { username, password, adress, phone, email, imageUrl })
+      .then(({data})=> data);
+  }
+
   login(user) {
     const { username, password } = user;
     return this.auth.post('/auth/login', {username, password})

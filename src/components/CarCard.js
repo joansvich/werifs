@@ -22,11 +22,9 @@ class CarCard extends Component {
                   <li>{drivetrain}</li>
                 </ul>
               </div>
-              <p>
                 <ButtonParticipation
                   idCar={_id}
                 />
-              </p>
             </div>
           </div>
         </div>

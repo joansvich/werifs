@@ -6,7 +6,7 @@ export const AuthContext = React.createContext(
   // authStore // default value
 );
 
-const { Provider, Consumer }  = AuthContext;
+const { Provider, Consumer } = AuthContext;
 
 export const withAuth = (Comp) => {
   return class WithAuth extends Component {
@@ -14,17 +14,18 @@ export const withAuth = (Comp) => {
       return (
         <Consumer>
           {(authStore) => {
-            return <Comp 
+            return <Comp
               isLogged={authStore.isLogged}
               user={authStore.user}
               logout={authStore.logout}
               login={authStore.login}
               signup={authStore.signup}
+              update={authStore.update}
               {...this.props} />
           }}
         </Consumer>
       )
-    }    
+    }
   }
 }
 
@@ -45,12 +46,12 @@ export default class AuthProvider extends Component {
   logoutUser = () => {
     return authService.logout()
       .then(() => {
-        this.setState({ 
+        this.setState({
           isLogged: false,
           user: {},
         });
       })
-      .catch( error => console.log(error))
+      .catch(error => console.log(error))
   }
 
   loginUser = (body) => {
@@ -69,6 +70,14 @@ export default class AuthProvider extends Component {
       .catch(error => console.log(error))
   }
 
+  updateUser = (body) => {
+    return authService.update(body)
+      .then((user) => {
+        this.setUser(user);
+      })
+      .catch(error => console.log(error))
+  }
+
   componentDidMount() {
     authService.me()
       .then((user) => {
@@ -79,7 +88,7 @@ export default class AuthProvider extends Component {
         })
       })
       .catch((error) => {
-        this.setState({ 
+        this.setState({
           isLogged: false,
           user: {},
           status: 'loaded'
@@ -96,14 +105,16 @@ export default class AuthProvider extends Component {
       default:
         return (
           <Provider value={
-            { isLogged,
+            {
+              isLogged,
               user,
-              logout: this.logoutUser, 
+              logout: this.logoutUser,
               login: this.loginUser,
               signup: this.signupUser,
+              update: this.updateUser
             }}>
             {children}
-          </Provider>    
+          </Provider>
         );
     }
   }

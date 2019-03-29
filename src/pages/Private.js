@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { withAuth } from '../providers/AuthProvider';
 import './private.css';
 import Loading from '../components/Loading';
-import zxcvbn from 'zxcvbn';
 
 class Private extends Component {
   state = {
@@ -35,8 +34,8 @@ class Private extends Component {
     const phone = this.state.phone;
     const email = this.state.email;
     const imageUrl = this.state.imageUrl;
-
-    this.props.signup({ username, password, adress, phone, email, imageUrl })
+    console.log(this.props);
+    this.props.update({ username, password, adress, phone, email, imageUrl })
       .catch(error => console.log(error))
   }
 
@@ -62,19 +61,19 @@ class Private extends Component {
                 <div className="profile-wrapper">
                   <h2>Detalles del perfil</h2>
                   <div className="profile-details-input">
-                    <input className="input" type="text" value={this.state.username} onChange={this.handleChange} />
+                    <input className="input" type="text" name="username" value={this.state.username} onChange={this.handleChange} />
                     <label className="label-input">* Nombre completo</label>
                   </div>
                   <div className="profile-details-input">
-                    <input className="input" type="text" value={this.state.adress} onChange={this.handleChange} />
+                    <input className="input" type="text" name="adress" value={this.state.adress} onChange={this.handleChange} />
                     <label className="label-input">* Dirección</label>
                   </div>
                   <div className="profile-details-input">
-                    <input className="input" type="text" value={this.state.phone} onChange={this.handleChange} />
+                    <input className="input" type="text" name="phone" value={this.state.phone} onChange={this.handleChange} />
                     <label className="label-input">* Teléfono</label>
                   </div>
                   <div className="profile-details-input">
-                    <input className="input" type="text" value={this.state.email} onChange={this.handleChange} />
+                    <input className="input" type="text" name="email" value={this.state.email} onChange={this.handleChange} />
                     <label className="label-input">* Email</label>
                   </div>
                 </div>
