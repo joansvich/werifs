@@ -20,34 +20,32 @@ class Navbar extends Component {
     if (countPart > 0) {
       showBullet = true;
     }
-    if (isLogged) {
-      return <>
-        <nav className="navbar">
-          <div className="container flex">
-            <div className="navbar-start">
-              <p>Username: {username}</p>
-              <Link className="link" to='/'>Home</Link>
-              <Link className="link" to='/create'>Create Cars</Link>
-              <p className="link" onClick={logout}>Logout</p>
-            </div>
-            <div className="navbar-end">
-              {showBullet && <div className="cart-bullet">{countPart}</div>}
-              <i onClick={this.handleClick} className="fas fa-shopping-cart"></i>
-              <Cart />
-            </div>
+    return <>
+      <nav className="navbar">
+        <div className="container flex navbar-height">
+          <div className="navbar-start">
+            <img src="./images/logo-werifs.png" alt="foto perfil" className="navbar-img-profile" />
+            <Link className="link" to='/'>Inicio</Link>
+            <Link className="link" to='/create'>Añadir coche</Link>
+            {isLogged && <>
+              <Link className="link" to='/private'>Mi perfil</Link>
+              <p className="link" onClick={logout}>Desconectar</p>
+            </>}
+            {!isLogged && <>
+              <Link className="link" to='/login'>Login</Link>
+              <Link className="link" to='/signup'>Signup</Link>
+            </>}
           </div>
-        </nav>
-      </>
-    } else {
-      return <div>
-        <Link to='/login'>Login</Link>
-        <Link to='/signup'>Signup</Link>
-      </div>
-
-    }
+          <div className="navbar-end">
+            {showBullet && <div className="cart-bullet">{countPart}</div>}
+            <i onClick={this.handleClick} className="fas fa-shopping-cart"></i>
+            <Cart />
+          </div>
+        </div>
+      </nav>
+    </>
 
   }
-
 }
 // export default withRouter(withAuth(withParticipation(Navbar)));
 export default compose(withRouter, withAuth, withParticipation)(Navbar);

@@ -2,47 +2,81 @@
   font-family: var(--font-primary);
   width: 100vw;
   height: 60px;
-  background-color: var(--color-primary);
+  background-color: #323248;
   position: fixed;
   z-index: 2;
   top: 0;
+  /* border: 1px solid red; */
   left: 0;
+  /* color: #f50; */
+  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
 }
 
-.navbar-start{
+.navbar-height {
+  height: 60px;
+}
+
+.navbar-start {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
+  position: relative;
+  padding-left: 100px;
 }
 
 .navbar-end {
   position: relative;
 }
 
-.fas {
-  padding: 20px;
-  color: white;
-  font-size: 30px;
+.navbar-img-profile {
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
 }
 
-.fas:hover{
+.fas {
+  color: #7aeefb;
+  font-size: 24px;
+}
+
+.fas:hover {
   cursor: pointer;
-  color: #777;
+  color: #fff;
   transition: all 0.2s ease-out;
 }
-
 
 .navbar .link {
   text-decoration: none;
   font-weight: 500;
   margin: 0;
-  padding: 10px;
-  color: white;
+  padding: 20px;
+  color: #fff;
 }
 
 .navbar .link:hover {
   cursor: pointer;
-  color: #777;
+  color: #7aeefb;
   transition: all 0.2s ease-out;
+}
+
+.cart-bullet {
+  display: -webkit-flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: red;
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+  top: -12px;
+  left: -10px;
+  color: #fff;
+  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+  font-size: 12px;
 }

@@ -3,6 +3,7 @@ import { withAuth } from '../providers/AuthProvider';
 import './private.css';
 import Loading from '../components/Loading';
 
+
 class Private extends Component {
   state = {
     username: "",
@@ -10,7 +11,8 @@ class Private extends Component {
     adress: "",
     phone: "",
     email: "",
-    isLoading: true
+    isLoading: true,
+    showButtonEdit: false
   }
 
 
@@ -42,6 +44,12 @@ class Private extends Component {
 
   handleChange = (event) => {
     const { name, value } = event.target;
+    if(!this.state.showButtonEdit){
+      this.setState({
+        [name]: value,
+        showButtonEdit: true
+      })
+    }
     this.setState({ [name]: value });
   }
 
@@ -87,7 +95,7 @@ class Private extends Component {
                 </div>
               </div>
             </div>
-            <button type="submit" className="handleEdit" >Guardar</button>
+            {this.state.showButtonEdit && <button type="submit" className="handleEdit" >Guardar</button>}
           </form>
         </>}
       </div>
