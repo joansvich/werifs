@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "rc-slider": "^8.6.7",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-native-flash-message": "^0.1.11",
@@ -11,6 +12,8 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "^2.1.8",
     "recompose": "^0.30.0",
+    "redux": "^4.0.1",
+    "video-react": "^0.13.6",
     "zxcvbn": "^4.4.2"
   },
   "scripts": {

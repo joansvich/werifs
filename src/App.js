@@ -11,7 +11,7 @@ import HomePage from './pages/HomePage';
 import CreateCars from './pages/CreateCars';
 import AuthProvider from './providers/AuthProvider';
 import ParticipationProvider from './providers/ParticipationProvider';
-
+import Game from './pages/Game';
 
 class App extends Component {
 
@@ -32,6 +32,7 @@ class App extends Component {
                 <AnonRoute path="/login" component={Login} />
                 <PrivateRoute path="/private" component={Private} />
                 <PrivateRoute path="/create" component={CreateCars} />
+                <PrivateRoute path="/game" component={Game}/>
               </Switch>
             </div>
           </div>

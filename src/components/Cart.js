@@ -2,15 +2,12 @@ import React from 'react';
 import { withParticipation } from '../providers/ParticipationProvider';
 import './cart.css'
 import CardCart from './CardCart';
+import { Link } from 'react-router-dom';
 
 
 
 function Cart(props) {
   const { showCard, listParticipation } = props.participationState
-
-  const handleClickGame = () => {
-    console.log('game!');
-  }
 
   const handleClickClose = () => {
     props.changeShowCard();
@@ -19,12 +16,10 @@ function Cart(props) {
   const renderList = () => {
     return listParticipation.map((participation, id) => {
       return (
-        
           <CardCart
             key={`id-${id}`}
             part={participation}
           />
-        
       )
     })
   }
@@ -36,7 +31,7 @@ function Cart(props) {
           <div className="cartbox">
             <button className="cartbox-button-close" onClick={handleClickClose}>X</button>
             {renderList()}
-            <button className="cartbox-button" onClick={handleClickGame}>A jugar!</button>
+            <Link to="/game" ><button className="cartbox-button" onClick={handleClickClose}>A jugar!</button></Link>
           </div>
         </>}
       </div>

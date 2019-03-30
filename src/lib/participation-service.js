@@ -21,6 +21,13 @@ class ParticipationService {
       .then(({ data }) => data);
   }
 
+  delete(_id) {
+    return this.participation.post('/participation/delete',{_id})
+      .then((data)=>{
+        console.log(data);
+        return data
+      })
+  }
 }
 
 

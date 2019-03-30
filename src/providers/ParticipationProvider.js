@@ -13,6 +13,7 @@ export const withParticipation = (Comp) => {
               participationState={value.participationState}
               addParticipation={value.addParticipation}
               changeShowCard={value.changeShowCard}
+              deleteParticipation={value.deleteParticipation}
               {...this.props}
             />
           )
@@ -30,7 +31,6 @@ class ParticipationProvider extends Component {
     showCard: false,
   }
 
-
   componentDidMount() {
     this.getParticipation();
   }
@@ -44,7 +44,15 @@ class ParticipationProvider extends Component {
       })
       .catch((err) => console.log(err));
   }
-
+  
+  deleteParticipation = (_id) => {
+    participationService.delete(_id)
+      .then((data) => {
+        console.log(data);
+        this.getParticipation();
+      })
+      .catch((err) => console.log(err));
+  }
 
   addParticipation = (newParticipation) => {
     participationService.create(newParticipation)
@@ -68,7 +76,8 @@ class ParticipationProvider extends Component {
       <MyContext.Provider value={{
         participationState: this.state,
         addParticipation: this.addParticipation,
-        changeShowCard: this.changeShowCard
+        changeShowCard: this.changeShowCard,
+        deleteParticipation: this.deleteParticipation
       }}>
         {this.props.children}
       </MyContext.Provider>
