@@ -14,6 +14,7 @@ export const withParticipation = (Comp) => {
               getParticipation={value.getParticipation}
               addParticipation={value.addParticipation}
               changeShowCard={value.changeShowCard}
+              changeIsOnCart={value.changeIsOnCart}
               deleteParticipation={value.deleteParticipation}
               updateParticipation={value.updateParticipation}
               {...this.props}
@@ -30,15 +31,11 @@ class ParticipationProvider extends Component {
 
   state = {
     listParticipation: [],
-    showCard: false,
+    showCard: false
   }
   
-  componentDidMount() {
-    this.getParticipation();
-  }
-
   getParticipation = () => {
-    participationService.list()
+    return participationService.list()
       .then((listParticipation) => {
         this.setState({
           listParticipation
@@ -55,7 +52,7 @@ class ParticipationProvider extends Component {
       })
       .catch((err) => console.log(err));
   }
-
+  
   addParticipation = (newParticipation) => {
     participationService.create(newParticipation)
       .then((data) => {
@@ -83,6 +80,16 @@ class ParticipationProvider extends Component {
     })
   }
 
+  changeIsOnCart = () => {
+    console.log('change cart');
+    this.setState({
+      isOnCart: !this.state.isOnCart
+    })
+  }
+  componentDidMount() {
+    this.getParticipation();
+  }
+
   render() {
     return (
       <MyContext.Provider value={{
@@ -90,6 +97,7 @@ class ParticipationProvider extends Component {
         getParticipation:this.getParticipation,
         addParticipation: this.addParticipation,
         changeShowCard: this.changeShowCard,
+        changeIsOnCart: this.changeIsOnCart,
         updateParticipation:this.updateParticipation,
         deleteParticipation: this.deleteParticipation
       }}>

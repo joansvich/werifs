@@ -1,0 +1,21 @@
+.compButton {
+  align-self: center;
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 25px;
+    margin: 10px;
+    margin-bottom: 20px;
+    font-weight: 300;
+    background-color: #2b91ff;
+    color: #fff;
+    text-align: center;
+    border: none;
+    font-size: 20px;
+}
+
+.compButton:hover {
+  cursor: pointer;
+  background-color: #fff;
+  color: #313248;
+  transition: all 0.2s ease-out;
+}

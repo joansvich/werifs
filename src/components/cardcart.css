@@ -5,6 +5,9 @@
   box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
   border-radius: 8px;
   max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 .card-cart-car h1, .card-cart-car p {
   margin: 5px 0;

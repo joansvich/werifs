@@ -40,13 +40,13 @@
 }
 
 .fas {
-  color: #7aeefb;
+  color: #fff;
   font-size: 24px;
 }
 
 .fas:hover {
   cursor: pointer;
-  color: #fff;
+  color: #7aeefb;
   transition: all 0.2s ease-out;
 }
 
