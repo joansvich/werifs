@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 class ParticipationService {
   constructor() {
     this.participation = axios.create({
@@ -21,10 +22,15 @@ class ParticipationService {
       .then(({ data }) => data);
   }
 
+  update(participation) {
+    const {_id, position} = participation;
+    return this.participation.put('/participation/', {_id, position})
+      .then(({data})=> data)
+  }
+
   delete(_id) {
     return this.participation.post('/participation/delete',{_id})
       .then((data)=>{
-        console.log(data);
         return data
       })
   }

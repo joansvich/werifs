@@ -2,7 +2,6 @@ import React from 'react';
 import { withParticipation } from '../providers/ParticipationProvider';
 import './cart.css'
 import CardCart from './CardCart';
-import { Link } from 'react-router-dom';
 
 
 
@@ -31,7 +30,6 @@ function Cart(props) {
           <div className="cartbox">
             <button className="cartbox-button-close" onClick={handleClickClose}>X</button>
             {renderList()}
-            <Link to="/game" ><button className="cartbox-button" onClick={handleClickClose}>A jugar!</button></Link>
           </div>
         </>}
       </div>

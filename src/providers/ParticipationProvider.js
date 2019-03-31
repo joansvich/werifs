@@ -11,9 +11,11 @@ export const withParticipation = (Comp) => {
           {(value) => (
             <Comp
               participationState={value.participationState}
+              getParticipation={value.getParticipation}
               addParticipation={value.addParticipation}
               changeShowCard={value.changeShowCard}
               deleteParticipation={value.deleteParticipation}
+              updateParticipation={value.updateParticipation}
               {...this.props}
             />
           )
@@ -30,7 +32,7 @@ class ParticipationProvider extends Component {
     listParticipation: [],
     showCard: false,
   }
-
+  
   componentDidMount() {
     this.getParticipation();
   }
@@ -60,9 +62,19 @@ class ParticipationProvider extends Component {
         this.getParticipation();
         this.setState({
           showCard: true,
-          
         })
       })
+  }
+
+  updateParticipation = (body) => {
+    return participationService.update(body)
+      .then((data) => {
+        this.getParticipation();
+        this.setState({
+          showCard: true,
+        })
+      })
+      .catch(error => console.log(error))
   }
 
   changeShowCard = () => {
@@ -75,8 +87,10 @@ class ParticipationProvider extends Component {
     return (
       <MyContext.Provider value={{
         participationState: this.state,
+        getParticipation:this.getParticipation,
         addParticipation: this.addParticipation,
         changeShowCard: this.changeShowCard,
+        updateParticipation:this.updateParticipation,
         deleteParticipation: this.deleteParticipation
       }}>
         {this.props.children}

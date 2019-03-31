@@ -2,17 +2,21 @@ import React, { Component } from 'react';
 import { Player, BigPlayButton, ControlBar } from 'video-react';
 import './game.css';
 import 'rc-slider/assets/index.css';
-import {withParticipation} from '../providers/ParticipationProvider';
+import { withParticipation } from '../providers/ParticipationProvider';
+import CardCart from '../components/CardCart';
 
 
 class game extends Component {
   state = {
-    slider: 5000
+    slider: 5000,
+    position: []
   }
 
-  handleSlider(e) {
+  handleSlider = (e) => {
     e.preventDefault();
-
+    const { _id } = this.props.location.state;
+    const position = this.state.slider;
+    this.props.updateParticipation({ _id, position });
   }
 
   handleClick = (e) => {
@@ -24,6 +28,15 @@ class game extends Component {
   handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: parseInt(value) });
+  }
+
+  renderListCars() {
+    const { position } = this.state
+    return position.map((pos, id) => {
+      return (
+        <li>Posicion: {pos}</li>
+      )
+    })
   }
 
   render() {
@@ -41,6 +54,7 @@ class game extends Component {
             <input type="submit" value="Añadir posición" />
           </form>
           <button value="1" onClick={this.handleClick}>+</button><button value="-1" onClick={this.handleClick}>-</button>
+          {this.renderListCars()}
         </div>
       </div>
     );
