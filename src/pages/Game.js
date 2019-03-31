@@ -3,7 +3,6 @@ import { Player, BigPlayButton, ControlBar } from 'video-react';
 import './game.css';
 import 'rc-slider/assets/index.css';
 import { withParticipation } from '../providers/ParticipationProvider';
-import CardCart from '../components/CardCart';
 
 
 class game extends Component {
@@ -38,6 +37,13 @@ class game extends Component {
       )
     })
   }
+  componentDidMount() {
+    this.props.changeGameMode()
+  }
+  componentWillUnmount() {
+    this.props.changeGameMode()
+  }
+  
 
   render() {
     return (

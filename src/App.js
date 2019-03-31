@@ -9,6 +9,7 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import HomePage from './pages/HomePage';
 import CreateCars from './pages/CreateCars';
+import Checkout from './pages/Checkout';
 import AuthProvider from './providers/AuthProvider';
 import ParticipationProvider from './providers/ParticipationProvider';
 import Game from './pages/Game';
@@ -33,6 +34,7 @@ class App extends Component {
                 <PrivateRoute path="/private" component={Private} />
                 <PrivateRoute path="/create" component={CreateCars} />
                 <PrivateRoute path="/game" component={Game}/>
+                <PrivateRoute path="/checkout" component={Checkout} />
               </Switch>
             </div>
           </div>

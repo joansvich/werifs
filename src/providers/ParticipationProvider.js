@@ -14,7 +14,7 @@ export const withParticipation = (Comp) => {
               getParticipation={value.getParticipation}
               addParticipation={value.addParticipation}
               changeShowCard={value.changeShowCard}
-              changeIsOnCart={value.changeIsOnCart}
+              changeGameMode={value.changeGameMode}
               deleteParticipation={value.deleteParticipation}
               updateParticipation={value.updateParticipation}
               {...this.props}
@@ -31,9 +31,10 @@ class ParticipationProvider extends Component {
 
   state = {
     listParticipation: [],
-    showCard: false
+    showCard: false,
+    gameMode: false
   }
-  
+
   getParticipation = () => {
     return participationService.list()
       .then((listParticipation) => {
@@ -43,7 +44,7 @@ class ParticipationProvider extends Component {
       })
       .catch((err) => console.log(err));
   }
-  
+
   deleteParticipation = (_id) => {
     participationService.delete(_id)
       .then((data) => {
@@ -52,7 +53,7 @@ class ParticipationProvider extends Component {
       })
       .catch((err) => console.log(err));
   }
-  
+
   addParticipation = (newParticipation) => {
     participationService.create(newParticipation)
       .then((data) => {
@@ -80,12 +81,12 @@ class ParticipationProvider extends Component {
     })
   }
 
-  changeIsOnCart = () => {
-    console.log('change cart');
+  changeGameMode = () => {
     this.setState({
-      isOnCart: !this.state.isOnCart
+      gameMode: !this.state.gameMode
     })
   }
+
   componentDidMount() {
     this.getParticipation();
   }
@@ -94,11 +95,11 @@ class ParticipationProvider extends Component {
     return (
       <MyContext.Provider value={{
         participationState: this.state,
-        getParticipation:this.getParticipation,
+        getParticipation: this.getParticipation,
         addParticipation: this.addParticipation,
         changeShowCard: this.changeShowCard,
-        changeIsOnCart: this.changeIsOnCart,
-        updateParticipation:this.updateParticipation,
+        changeGameMode: this.changeGameMode,
+        updateParticipation: this.updateParticipation,
         deleteParticipation: this.deleteParticipation
       }}>
         {this.props.children}

@@ -4,7 +4,7 @@ import ButtonParticipation from '../components/ButtonParticipation';
 class CarCard extends Component {
 
   render() {
-    const { _id, name, power, retailPrice, velocity, torque, contamination, drivetrain, imageUrl } = this.props.car;
+    const { _id, name, power, retailPrice, velocity, torque, contamination, drivetrain, imageUrl, price1, price5, price10 } = this.props.car;
     return (
         <div className="car-card">
           <div className="pj-card">
@@ -23,9 +23,9 @@ class CarCard extends Component {
                   <li className="li-imp"><span>Tracción: </span>{drivetrain}</li>
                 </ul>
                 <div className="car-prices">
-                  <p><span>1</span> 2€/u</p>
-                  <p><span>5+</span> 1,8€/u</p>
-                  <p><span>10+</span> 1,6€/u</p>
+                  <p><span>1</span> {price1}€/u</p>
+                  <p><span>5+</span> {price5}€/u</p>
+                  <p><span>10+</span> {price10}€/u</p>
                 </div>
               </div>
                 <ButtonParticipation

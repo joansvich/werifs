@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import authService from '../lib/auth-service';
-
+import Loading from '../components/Loading';
 
 export const AuthContext = React.createContext(
   // authStore // default value
@@ -101,7 +101,7 @@ export default class AuthProvider extends Component {
     const { children } = this.props;
     switch (status) {
       case 'loading':
-        return <div>Loading</div>
+        return <><Loading /></>
       default:
         return (
           <Provider value={

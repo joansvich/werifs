@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withParticipation } from '../providers/ParticipationProvider';
 import './buttonparticipation.css'
 import Button from './Button';
-
+import Loading from './Loading';
 
 
 class ButtonParticipation extends Component {
@@ -20,7 +20,6 @@ class ButtonParticipation extends Component {
       numParticipations: this.state.numParticipations
     }
     this.props.addParticipation(newParticipation);
-    this.props.changeIsOnCart();
     this.setState({
       numParticipations: 0
     })
@@ -42,16 +41,20 @@ class ButtonParticipation extends Component {
     } else {
       this.props.participationState.listParticipation.map((participation) => {
         if (participation.idCar._id === this.props.idCar) {
-          cent=true
+          cent = true
           // return (
           //   <p>Añadido</p>
           // )
         }
       })
-      if(cent){
-        return (<p>Añadido!</p>)
-      }else{
-        return(<Button text="Añadir al carrito" onClick={this.handleClickAdd} />)
+      if (cent) {
+        return (
+          <Button text="Añadido!" done={true} onClick={this.handleClickAdd} />
+        )
+      } else {
+        return (
+          <Button text="Añadir al carrito" onClick={this.handleClickAdd} />
+        )
       }
     }
   }
@@ -59,12 +62,12 @@ class ButtonParticipation extends Component {
   render() {
     const { isOnCart, isLoading } = this.state;
     return (
-      <div>
-        {isLoading && <div><p>Loading...</p></div>}
+      <>
+        {isLoading && <><Loading /></>}
         {!isLoading && <>
           {this.updateButton()}
         </>}
-      </div>
+      </>
     );
   }
 }

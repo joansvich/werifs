@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './homepage.css'
 import carsService from '../lib/cars-service';
 import CardCar from '../components/CarCard';
+import Loading from '../components/Loading';
 
 class HomePage extends Component {
 
@@ -64,7 +65,7 @@ class HomePage extends Component {
         <section className="container">
           <h1>Coches disponibles</h1>
           <div className="list-cars">
-            {this.state.isLoading ? <p>'Loading ....'</p> : this.renderCarList()}
+            {this.state.isLoading ? <><Loading /></> : this.renderCarList()}
           </div>
         </section>
       </div >

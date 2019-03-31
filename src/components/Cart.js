@@ -12,14 +12,21 @@ function Cart(props) {
     props.changeShowCard();
   }
   const renderList = () => {
-    return listParticipation.map((participation, id) => {
-      return (
-          <CardCart
-            key={`id-${id}`}
-            part={participation}
-          />
-      )
-    })
+    if(listParticipation.length>0){
+      return listParticipation.map((participation, id) => {
+        return (
+            <CardCart
+              key={`id-${id}`}
+              part={participation}
+            />
+        )
+      })
+    }
+  }
+  const buttonClose = () => {
+    if(listParticipation.length>0){
+      return <button className="cartbox-button-close" onClick={handleClickClose}>X</button>
+    }
   }
 
   return (
@@ -27,7 +34,7 @@ function Cart(props) {
       <div>
         {showCard && <>
           <div className="cartbox">
-            <button className="cartbox-button-close" onClick={handleClickClose}>X</button>
+            {buttonClose()}
             {renderList()}
           </div>
         </>}

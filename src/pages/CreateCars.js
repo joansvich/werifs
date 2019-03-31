@@ -12,14 +12,17 @@ class CreateCars extends Component {
     torque: "",
     contamination: "",
     drivetrain: "",
-    imageUrl: ""
+    imageUrl: "",
+    price1: "",
+    price5: "",
+    price10: ""
   }
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    const { name, power, retailPrice, velocity, torque, contamination, drivetrain, imageUrl } = this.state
+    const { name, power, retailPrice, velocity, torque, contamination, drivetrain, imageUrl, price1, price5, price10 } = this.state
 
-    carsService.create({ name, power, retailPrice, velocity, torque, contamination, drivetrain, imageUrl })
+    carsService.create({ name, power, retailPrice, velocity, torque, contamination, drivetrain, imageUrl, price1, price5, price10 })
       .then((carCreated) => { console.log(carCreated) })
       .catch(error => console.log(error))
   }
@@ -30,7 +33,7 @@ class CreateCars extends Component {
   }
 
   render() {
-    const { name, power, retailPrice, velocity, torque, contamination, drivetrain, imageUrl } = this.state;
+    const { name, power, retailPrice, velocity, torque, contamination, drivetrain, imageUrl, price1, price5, price10 } = this.state;
     return (
       <form className="form-create-cars" onSubmit={this.handleFormSubmit}>
         <div className="create-cars-title">
@@ -74,10 +77,24 @@ class CreateCars extends Component {
                 <label className="label-input" >Url imagen:</label>
               </div>
             </div>
+            <div className="create-cars-wrapper">
+              <div className="create-cars-input">
+                <input className="input" type="text" name="price1" value={price1} onChange={this.handleChange} />
+                <label className="label-input" >Precio 1 unidad:</label>
+              </div>
+              <div className="create-cars-input">
+                <input className="input" type="text" name="price5" value={price5} onChange={this.handleChange} />
+                <label className="label-input" >Precio 5 unidades</label>
+              </div>
+              <div className="create-cars-input">
+                <input className="input" type="text" name="price10" value={price10} onChange={this.handleChange} />
+                <label className="label-input" >Precio 10 unidades</label>
+              </div>
+            </div>
           </div>
-        </div>
+        </div >
         <button type="submit" className="handleEdit" >Crear coche</button>
-      </form>
+      </form >
     )
   }
 }

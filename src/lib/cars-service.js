@@ -8,7 +8,7 @@ class CarsService {
     })
   }
 
-  list(){
+  list() {
     return this.cars.get('/cars/')
       .then(({ data }) => {
         return data
@@ -16,8 +16,8 @@ class CarsService {
   }
 
   create(car) {
-    const { name, power, retailPrice, velocity, torque, contamination, drivetrain, imageUrl } = car;
-    return this.cars.post('/cars/create', { name, power, retailPrice, velocity, torque, contamination, drivetrain, imageUrl })
+    const { name, power, retailPrice, velocity, torque, contamination, drivetrain, imageUrl, price1, price5, price10 } = car;
+    return this.cars.post('/cars/create', { name, power, retailPrice, velocity, torque, contamination, drivetrain, imageUrl, price1, price5, price10 })
       .then(({ data }) => data);
   }
 
