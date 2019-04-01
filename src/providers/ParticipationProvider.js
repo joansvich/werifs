@@ -14,6 +14,7 @@ export const withParticipation = (Comp) => {
               getParticipation={value.getParticipation}
               addParticipation={value.addParticipation}
               setAmount={value.setAmount}
+              resetParticipationState={value.resetParticipationState}
               changeShowCard={value.changeShowCard}
               changeGameMode={value.changeGameMode}
               deleteParticipation={value.deleteParticipation}
@@ -38,6 +39,7 @@ class ParticipationProvider extends Component {
   }
 
   getParticipation = () => {
+    console.log('getparticipation');
     return participationService.list()
       .then((listParticipation) => {
         this.setState({
@@ -95,6 +97,16 @@ class ParticipationProvider extends Component {
     })
   }
 
+  resetParticipationState = () => {
+    console.log('resetPartState');
+    this.setState({
+      listParticipation: [],
+      showCard: false,
+      gameMode: false,
+      amount: 0
+    })
+  }
+
   componentDidMount() {
     this.getParticipation();
   }
@@ -105,6 +117,7 @@ class ParticipationProvider extends Component {
         participationState: this.state,
         getParticipation: this.getParticipation,
         setAmount: this.setAmount,
+        resetParticipationState: this.resetParticipationState,
         addParticipation: this.addParticipation,
         changeShowCard: this.changeShowCard,
         changeGameMode: this.changeGameMode,

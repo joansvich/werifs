@@ -14,7 +14,7 @@ class Checkout extends Component {
   state = {
     isLoading: true,
     isPaymentLoading: false,
-    isPaymentOk: false
+    showMessage: false
   }
 
   componentDidMount() {
@@ -23,17 +23,21 @@ class Checkout extends Component {
     })
   }
 
-
+  componentWillUnmount() {
+    clearInterval(this.timeoutId);
+  }
+  
+ 
   handleClick = async () => {
     try {
-
       const { stripe } = this.props;
       const { amount } = this.props.participationState;
       const name = "Joan";
       const data = await stripe.createToken({
         name
       })
-      if(!data.error){
+
+      if (!data.error) {
         this.setState({
           isPaymentLoading: true
         })
@@ -41,19 +45,28 @@ class Checkout extends Component {
       const token = data.token.id;
 
       const payment = await checkoutService.create(amount, token)
-      console.log(payment);
       if (payment) {
         this.setState({
           isPaymentLoading: false,
-          isPaymentOk: true
+          showMessage: true
         })
+        this.timeout();
       }
     } catch (error) {
     }
   }
 
+  timeout = () => {
+    this.timeoutId = setTimeout(() => {
+      this.setState({
+        showMessage: false
+      })
+    }, 3900)
+  }
+
+
   render() {
-    const { isLoading, isPaymentOk } = this.state;
+    const { isLoading, showMessage } = this.state;
     const { amount } = this.props.participationState;
     return (
       <div className="container stripe">
@@ -81,11 +94,10 @@ class Checkout extends Component {
               <div id="card-errors" role="alert"></div>
             </div>
             <Button text={this.state.isPaymentLoading ? 'Loading' : 'Pagar'} onClick={this.handleClick} />
-            {isPaymentOk && <>
+            {showMessage && <>
               <MessageFlash
                 text="Pago realizado correctamente"
-                modifier="done"
-                displayInit="alert-show"
+                status="done"
               />
             </>}
           </div>

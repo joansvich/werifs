@@ -4,44 +4,19 @@ import './messageflash.css';
 
 class MessageFlash extends Component {
 
-  state = {
-    timeInit: 0,
-    display: 'alert-show',
-    showMessage: true
-  }
-
-  timeout() {
-    if (this.state.showMessage) {
-      this.timeoutId = setTimeout(() => {
-        this.setState({
-          display: 'alert-none',
-          showMessage: false
-        })
-      }, 6000)
-    }
-  }
-
-  componentWillUnmount() {
-    console.log('um');
-    clearInterval(this.timeoutId);
-  }
-
-
   render() {
-    console.log('render');
-    const { text, modifier } = this.props
-    const { display } = this.state;
-
+    console.log('render Message');
+    const { text, status } = this.props
     return (
-      <div className={display}>
+      <div className='alert-show'>
         <div className="container-rectangle">
-          <div className={`rectangle rectangle--${modifier}`}>
+          <div className={`rectangle rectangle--${status}`}>
+            <img id="alert-img" src={`./images/${status}.png`} alt="error" />
             <div className="notification-text">
               <span>&nbsp;&nbsp;{text}</span>
             </div>
           </div>
         </div>
-        {this.timeout()}
       </div>
     );
   }
