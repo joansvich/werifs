@@ -19,7 +19,7 @@ class Login extends Component {
     const {name, value} = event.target;
     this.setState({[name]: value});
   }
-
+  
   render() {
     const { username, password } = this.state;
     return (

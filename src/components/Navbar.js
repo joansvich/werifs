@@ -12,22 +12,31 @@ class Navbar extends Component {
     this.props.changeShowCard();
   }
 
+  renderButtonCreateCars = () => {
+
+  }
+
   render() {
-    const { isLogged, user, logout } = this.props;
+    const { isLogged, isAdmin, user, logout } = this.props;
     const { username } = user;
     let showBullet = false;
     const countPart = this.props.participationState.listParticipation.length;
     if (countPart > 0) {
       showBullet = true;
     }
+    console.log(this.props);
     return <>
       <nav className="navbar">
         <div className="container flex navbar-height">
           <div className="navbar-start">
             <img src="./images/logo-werifs.png" alt="foto perfil" className="navbar-img-profile" />
             <Link className="link" to='/'>Inicio</Link>
-            <Link className="link" to='/create'>Añadir coche</Link>
             {isLogged && <>
+              {isAdmin && 
+                <>
+                  <Link className="link" to='/create'>Añadir coche</Link>
+                </>
+              }
               <Link className="link" to='/private'>Mi perfil</Link>
               <p className="link" onClick={logout}>Desconectar</p>
             </>}

@@ -16,6 +16,7 @@ export const withAuth = (Comp) => {
           {(authStore) => {
             return <Comp
               isLogged={authStore.isLogged}
+              isAdmin={authStore.isAdmin}
               user={authStore.user}
               logout={authStore.logout}
               login={authStore.login}
@@ -32,15 +33,24 @@ export const withAuth = (Comp) => {
 export default class AuthProvider extends Component {
   state = {
     isLogged: false,
+    isAdmin:false,
     user: {},
     status: 'loading'
   }
 
   setUser = (user) => {
-    this.setState({
-      isLogged: true,
-      user,
-    })
+    if(user.admin){
+      this.setState({
+        isLogged: true,
+        isAdmin: true,
+        user
+      })
+    }else{
+      this.setState({
+        isLogged: true,
+        user,
+      })
+    }
   }
 
   logoutUser = () => {
@@ -49,6 +59,7 @@ export default class AuthProvider extends Component {
         this.setState({
           isLogged: false,
           user: {},
+          isAdmin: false
         });
       })
       .catch(error => console.log(error))
@@ -81,11 +92,20 @@ export default class AuthProvider extends Component {
   componentDidMount() {
     authService.me()
       .then((user) => {
-        this.setState({
-          isLogged: true,
-          user,
-          status: 'loaded'
-        })
+        if(user.admin){
+          this.setState({
+            isLogged: true,
+            isAdmin: true,
+            user,
+            status: 'loaded'
+          })
+        }else{
+          this.setState({
+            isLogged: true,
+            user,
+            status: 'loaded'
+          })
+        }
       })
       .catch((error) => {
         this.setState({
@@ -97,7 +117,7 @@ export default class AuthProvider extends Component {
   }
 
   render() {
-    const { isLogged, user, status } = this.state;
+    const { isLogged, isAdmin, user, status } = this.state;
     const { children } = this.props;
     switch (status) {
       case 'loading':
@@ -108,6 +128,7 @@ export default class AuthProvider extends Component {
             {
               isLogged,
               user,
+              isAdmin,
               logout: this.logoutUser,
               login: this.loginUser,
               signup: this.signupUser,

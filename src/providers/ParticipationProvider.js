@@ -13,6 +13,7 @@ export const withParticipation = (Comp) => {
               participationState={value.participationState}
               getParticipation={value.getParticipation}
               addParticipation={value.addParticipation}
+              setAmount={value.setAmount}
               changeShowCard={value.changeShowCard}
               changeGameMode={value.changeGameMode}
               deleteParticipation={value.deleteParticipation}
@@ -32,7 +33,8 @@ class ParticipationProvider extends Component {
   state = {
     listParticipation: [],
     showCard: false,
-    gameMode: false
+    gameMode: false,
+    amount: 0
   }
 
   getParticipation = () => {
@@ -87,6 +89,12 @@ class ParticipationProvider extends Component {
     })
   }
 
+  setAmount = (amount) => {
+    this.setState({
+      amount
+    })
+  }
+
   componentDidMount() {
     this.getParticipation();
   }
@@ -96,6 +104,7 @@ class ParticipationProvider extends Component {
       <MyContext.Provider value={{
         participationState: this.state,
         getParticipation: this.getParticipation,
+        setAmount: this.setAmount,
         addParticipation: this.addParticipation,
         changeShowCard: this.changeShowCard,
         changeGameMode: this.changeGameMode,

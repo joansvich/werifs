@@ -13,8 +13,10 @@ class CardCart extends Component {
   }
 
 
-  handleClickClose = () => {
+  handleClickClose = (totalPrice) => {
+    this.props.setAmount(totalPrice);
     this.props.changeShowCard();
+
   }
 
   positionList() {
@@ -38,22 +40,21 @@ class CardCart extends Component {
     } else {
       totalPrice = price10 * totalPositions;
     }
+
     return (
       <div>
         <p className="totalPrice"><span>Total:</span> {Math.round(totalPrice * 100) / 100}€</p>
         <Link to={{
-          pathname: '/checkout',
-          state: {
-            totalPrice
-          }
+          pathname: '/checkout'
         }}>
           <Button
             text="Pagar"
-            onClick={this.handleClickClose}
+            onClick={() => { this.handleClickClose(totalPrice) }}
           />
         </Link>
       </div>
     )
+
 
   }
   render() {

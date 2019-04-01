@@ -1,0 +1,71 @@
+.stripe {
+  width: 670px;
+  margin: 100px auto;
+  height: 100%;
+  font-size: 16px;
+  font-variant: normal;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  background-color: #f7f8f9;
+  color: #6b7c93;
+  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+  border-radius: 4px;
+}
+
+.form-row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.stripe-input{
+  width: 70%;
+  margin: 0 auto;
+} 
+
+.stripe-total-amount {
+  font-size: 20px;
+}
+
+.stripe-total-amount span{
+  font-weight: 500;
+}
+
+.stripe-wrapper {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stripe-label {
+  font-weight: 500;
+  font-size: 14px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.StripeElement {
+  box-sizing: border-box;
+  height: 40px;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}

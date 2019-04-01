@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import './homepage.css'
 import carsService from '../lib/cars-service';
 import CardCar from '../components/CarCard';
 import Loading from '../components/Loading';
+
 
 class HomePage extends Component {
 
