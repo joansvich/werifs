@@ -3,10 +3,12 @@ import './login.css';
 import { withAuth } from '../providers/AuthProvider';
 import Button from '../components/Button';
 
+
 class Login extends Component {
   state = {
     username: "",
     password: "",
+    error:""
   }
 
   handleFormSubmit = (event) => {
@@ -14,10 +16,14 @@ class Login extends Component {
     const { username, password } = this.state
 
     this.props.login({ username, password })
-      .then(() => { 
+      .then((data) => {
         
+        // if(data.data.status){
+        //   this.setState({
+        //     error:data
+        //   })
+        // }
       })
-      .catch(error => console.log(error))
   }
 
   handleChange = (event) => {
@@ -34,11 +40,11 @@ class Login extends Component {
         </div>
         <div className="login-details">
           <div className="component-input">
-            <input className="component-input--input" type="text" name="username" value={username} onChange={this.handleChange} />
+            <input required={true} className="component-input--input" type="text" name="username" value={username} onChange={this.handleChange} />
             <label className="label-component-input">Usuario:</label>
           </div>
           <div className="component-input">
-            <input className="component-input--input" type="password" name="password" value={password} onChange={this.handleChange} />
+            <input required={true}  className="component-input--input" type="password" name="password" value={password} onChange={this.handleChange} />
             <label className="label-component-input">Contraseña:</label>
           </div>
           <Button

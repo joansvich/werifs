@@ -39,7 +39,7 @@ class HomePage extends Component {
             <h1>GANA EL COCHE DE TUS SUEÑOS</h1>
           </div>
         </section>
-        <section id="howWorks" className="container">
+        <section className="container">
           <span className="section-line"></span>
           <h1 className="section-text-header">¿CÓMO FUNCIONA?</h1>
           <div className="how-works">
