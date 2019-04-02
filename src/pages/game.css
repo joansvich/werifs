@@ -16,9 +16,14 @@
   height: auto;
 }
 
+/* .game-separator{
+  width: 100%;
+  height: 40px;
+} */
+
 .game-slider {
   cursor: pointer;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   width: 100%;
   appearance: none;
   height: 25px;
@@ -28,6 +33,8 @@
   -webkit-transition: .2s;
   transition: opacity .2s;
   z-index: 3;
+  position: relative;
+  margin: 0;
 }
 
 .game-slider:hover {
@@ -38,13 +45,12 @@
 .game-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 1px;
-  height: 100px;
+  width: 2px;
+  height: 50px;
   background: #4CAF50;
   cursor: pointer;
   z-index: 3;
 }
-
 
  
 /* VIDEO REACT */

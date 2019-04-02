@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Player, BigPlayButton, ControlBar } from 'video-react';
+import { Player, BigPlayButton, PlayToggle, ControlBar } from 'video-react';
 import './game.css';
 import 'rc-slider/assets/index.css';
 import { withParticipation } from '../providers/ParticipationProvider';
+
+
 
 
 class game extends Component {
@@ -43,16 +45,18 @@ class game extends Component {
   componentWillUnmount() {
     this.props.changeGameMode()
   }
-  
 
   render() {
+    console.log(Player);
     return (
       <div className="game">
         <h1>Juego</h1>
         <div className="game-video">
-          <Player src='./video/video-inicio.mp4'>
+          <Player ref="player" src='./video/video-inicio.mp4'>
             <BigPlayButton position="center" />
-            <ControlBar autoHide={true} className="my-class" />
+            <ControlBar autoHideTime={1000} autoHide={true} disableDefaultControls={true}>
+              <PlayToggle />
+            </ControlBar>
           </Player>
           <form onSubmit={this.handleSlider}>
             <input onChange={this.handleChange} name="slider" type="range" min="1" max="10000" value={this.state.slider} className="game-slider" />
