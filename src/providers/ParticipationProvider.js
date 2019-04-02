@@ -39,6 +39,7 @@ class ParticipationProvider extends Component {
   }
 
   getParticipation = () => {
+    console.log('getPart');
     return participationService.list()
       .then((listParticipation) => {
         let amount = 0;
@@ -108,10 +109,6 @@ class ParticipationProvider extends Component {
       gameMode: false,
       amount: 0
     })
-  }
-
-  componentDidMount() {
-    this.getParticipation();
   }
 
   render() {

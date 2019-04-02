@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import { withAuth } from '../providers/AuthProvider';
 import './private.css';
 import Loading from '../components/Loading';
-
+import Button from '../components/Button';
+import { withParticipation } from '../providers/ParticipationProvider';
+import { compose } from 'recompose';
 
 class Private extends Component {
   state = {
@@ -26,6 +28,11 @@ class Private extends Component {
       email: user.email,
       isLoading: false,
     })
+  }
+
+  handleLogout = () => {
+    this.props.resetParticipationState();
+    this.props.logout();
   }
 
   handleFormSubmit = (event) => {
@@ -97,10 +104,14 @@ class Private extends Component {
             </div>
             {this.state.showButtonEdit && <button type="submit" className="handleEdit" >Guardar</button>}
           </form>
+          <Button 
+            text="Desconectar"
+            onClick={this.handleLogout}
+          />
         </>}
       </div>
     )
   }
 }
 
-export default withAuth(Private);
+export default compose(withAuth,withParticipation)(Private);

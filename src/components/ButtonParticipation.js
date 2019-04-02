@@ -11,7 +11,7 @@ class ButtonParticipation extends Component {
 
   state = {
     numParticipations: 0,
-    isLoading: true,
+    isLoading: false,
     isOnCart: false,
     showMessage: false
   }
@@ -49,14 +49,7 @@ class ButtonParticipation extends Component {
     }, 4000)
   }
 
-  componentDidMount() {
-    this.props.getParticipation()
-      .then(() => {
-        this.setState({
-          isLoading: false
-        })
-      })
-  }
+
 
   updateButton = () => {
     let cent = false;
@@ -81,13 +74,10 @@ class ButtonParticipation extends Component {
   }
 
   render() {
-    const { isLoading, showMessage } = this.state;
+    const { showMessage } = this.state;
     return (
       <>
-        {isLoading && <><Loading /></>}
-        {!isLoading && <>
-          {this.updateButton()}
-        </>}
+        {this.updateButton()}
         {showMessage && <MessageFlash
           text="Es necesario iniciar sesión para añadir al carrito"
           status="error"

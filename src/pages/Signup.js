@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { withAuth } from '../providers/AuthProvider';
+import Button from '../components/Button';
+import { compose } from 'recompose';
+import { withParticipation } from '../providers/ParticipationProvider';
 import './signup.css'
+import MessageFlash from '../components/MessageFlash';
 class Signup extends Component {
 
   state = {
@@ -10,7 +14,9 @@ class Signup extends Component {
     adress: "",
     phone: "",
     email: "",
-    imageUrl: ""
+    imageUrl: "",
+    error: "",
+    showError: false
   };
 
   handleFormSubmit = (event) => {
@@ -23,7 +29,32 @@ class Signup extends Component {
     const imageUrl = this.state.imageUrl;
 
     this.props.signup({ username, password, adress, phone, email, imageUrl })
-      .catch(error => console.log(error))
+      .then((error) => {
+        if (error) {
+          this.setState({
+            error: error.data.code,
+            showError: true
+          })
+          this.timeout();
+        } else {
+          this.props.getParticipation()
+            .then(() => {
+              this.props.history.push("/");
+            })
+        }
+      })
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timeoutId);
+  }
+
+  timeout = () => {
+    this.timeoutId = setTimeout(() => {
+      this.setState({
+        showError: false
+      })
+    }, 4000)
   }
 
   handleChange = (event) => {
@@ -32,32 +63,59 @@ class Signup extends Component {
   }
 
   render() {
-    const { username, password, adress, phone, email, imageUrl } = this.state;
+    const { username, password, adress, phone, email, imageUrl, showError, error } = this.state;
     return (
       <div>
-        <form onSubmit={this.handleFormSubmit}>
-          <label>Nombre:</label>
-          <input type="text" name="username" value={username} onChange={this.handleChange} />
-          <label>Contraseña:</label>
-          <input type="password" name="password" value={password} onChange={this.handleChange} />
-          <label>Dirección:</label>
-          <input type="text" name="adress" value={adress} onChange={this.handleChange} />
-          <label>Teléfono:</label>
-          <input type="text" name="phone" value={phone} onChange={this.handleChange} />
-          <label>Email:</label>
-          <input type="email" name="email" value={email} onChange={this.handleChange} />
-          <label>Imagen:</label>
-          <input type="text" name="imageUrl" value={imageUrl} onChange={this.handleChange} />
-          <input type="submit" value="Signup" />
+        <form className="text-center" onSubmit={this.handleFormSubmit}>
+          <div className="login-title">
+            <h1>Crear una cuenta</h1>
+          </div>
+          <div className="input-container">
+            <div className="input-wrapper">
+              <div className="component-input">
+                <input required={true} className="component-input--input" type="text" name="username" value={username} onChange={this.handleChange} />
+                <label className="label-component-input">Nombre:</label>
+              </div>
+              <div className="component-input">
+                <input required={true} className="component-input--input" type="password" name="password" value={password} onChange={this.handleChange} />
+                <label className="label-component-input">Contraseña:</label>
+              </div>
+              <div className="component-input">
+                <input required={true} className="component-input--input" type="text" name="adress" value={adress} onChange={this.handleChange} />
+                <label className="label-component-input">Dirección:</label>
+              </div>
+            </div>
+            <div className="input-wrapper">
+              <div className="component-input">
+                <input required={true} className="component-input--input" type="text" name="phone" value={phone} onChange={this.handleChange} />
+                <label className="label-component-input">Teléfono:</label>
+              </div>
+              <div className="component-input">
+                <input required={true} className="component-input--input" type="email" name="email" value={email} onChange={this.handleChange} />
+                <label className="label-component-input">Email:</label>
+              </div>
+              <div className="component-input">
+                <input required={true} className="component-input--input" type="text" name="imageUrl" value={imageUrl} onChange={this.handleChange} />
+                <label className="label-component-input">Imagen:</label>
+              </div>
+            </div>
+          </div>
+          <Button
+            text="Registrarse"
+          />
+          {showError && <MessageFlash
+            text={error}
+            status="error"
+          />}
+          <p>¿Ya tienes una cuenta?
+          <Link to={"/login"}> Login</Link>
+          </p>
         </form>
 
-        <p>Already have account?
-          <Link to={"/login"}> Login</Link>
-        </p>
 
-      </div>
+      </div >
     )
   }
 }
 
-export default withAuth(Signup);
+export default compose(withAuth, withRouter, withParticipation)(Signup);

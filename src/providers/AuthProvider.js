@@ -68,11 +68,9 @@ export default class AuthProvider extends Component {
   loginUser = (body) => {
     return authService.login(body)
       .then((user) => {
-        console.log(user);
         this.setUser(user);
       })
       .catch((error) => {
-        console.log(error.response);
         return error.response
       })
   }
@@ -82,7 +80,7 @@ export default class AuthProvider extends Component {
       .then((user) => {
         this.setUser(user);
       })
-      .catch(error => console.log(error))
+      .catch(error => error.response)
   }
 
   updateUser = (body) => {
