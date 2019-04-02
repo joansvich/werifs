@@ -4,8 +4,6 @@ import './cart.css'
 import CardCart from './CardCart';
 
 
-
-
 function Cart(props) {
   const { showCard, listParticipation } = props.participationState
   const handleClickClose = () => {

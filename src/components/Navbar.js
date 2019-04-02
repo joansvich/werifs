@@ -12,6 +12,11 @@ class Navbar extends Component {
     this.props.changeShowCard();
   }
 
+  componentDidMount(){
+    if(this.props.isLogged){
+      this.props.getParticipation();
+    }
+  }
   render() {
     const { isLogged, user } = this.props;
     const {amount} = this.props.participationState;

@@ -93,10 +93,10 @@
   width: 30px;
   height: 30px;
   fill: #51ff6e;
-  margin: 0 10px;
+  margin: 0 40px;
 }
 
-.icon-logout:hover {
+.icon-login:hover {
   fill: #7aeefb;
   transition: all 0.2s ease-out;
   cursor: pointer;

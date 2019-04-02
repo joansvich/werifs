@@ -18,6 +18,7 @@ class Checkout extends Component {
   }
 
   componentDidMount() {
+    this.props.changeShowCard();
     this.setState({
       isLoading: false,
     })

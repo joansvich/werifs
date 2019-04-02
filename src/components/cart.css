@@ -39,19 +39,19 @@
   font-size: 10px;
   margin: 10px;
   font-weight: 300;
-  background-color: #f50;
-  border-color: #bb3e00;
+  background-color: #cccccc;
+  border-color: #cccccc;
   color: #fff;
   text-align: center;
   position: fixed;
-  top: 80px;
-  right: 10px;
+  top: 84px;
+  right: 25px;
   box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
 }
 
 .cartbox-button-close:hover {
   cursor: pointer;
   background-color: #fff;
-  color: #f50;
+  color: #56587d;
   transition: all 0.2s ease-out;
 }
