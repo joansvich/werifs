@@ -68,28 +68,28 @@ class Private extends Component {
               <div className="profile-details-box">
                 <div className="profile-wrapper">
                   <h2>Detalles del perfil</h2>
-                  <div className="profile-details-input">
-                    <input className="input" type="text" name="username" value={this.state.username} onChange={this.handleChange} />
-                    <label className="label-input">* Nombre completo</label>
+                  <div className="component-input">
+                    <input className="component-input--input" type="text" name="username" value={this.state.username} onChange={this.handleChange} />
+                    <label className="label-component-input">* Nombre completo</label>
                   </div>
-                  <div className="profile-details-input">
-                    <input className="input" type="text" name="adress" value={this.state.adress} onChange={this.handleChange} />
-                    <label className="label-input">* Dirección</label>
+                  <div className="component-input">
+                    <input className="component-input--input" type="text" name="adress" value={this.state.adress} onChange={this.handleChange} />
+                    <label className="label-component-input">* Dirección</label>
                   </div>
-                  <div className="profile-details-input">
-                    <input className="input" type="text" name="phone" value={this.state.phone} onChange={this.handleChange} />
-                    <label className="label-input">* Teléfono</label>
+                  <div className="component-input">
+                    <input className="component-input--input" type="text" name="phone" value={this.state.phone} onChange={this.handleChange} />
+                    <label className="label-component-input">* Teléfono</label>
                   </div>
-                  <div className="profile-details-input">
-                    <input className="input" type="text" name="email" value={this.state.email} onChange={this.handleChange} />
-                    <label className="label-input">* Email</label>
+                  <div className="component-input">
+                    <input className="component-input--input" type="text" name="email" value={this.state.email} onChange={this.handleChange} />
+                    <label className="label-component-input">* Email</label>
                   </div>
                 </div>
               </div>
               <div className="profile-details-box">
                 <div className="profile-wrapper">
                   <h2>Imagen de perfil</h2>
-                  <div className="profile-details-input">
+                  <div className="component-input">
                     <img className="profile-img" src={user.imageUrl} alt="" />
                   </div>
                 </div>

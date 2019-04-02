@@ -14,9 +14,7 @@ class CardCart extends Component {
 
 
   handleClickClose = (totalPrice) => {
-    this.props.setAmount(totalPrice);
     this.props.changeShowCard();
-
   }
 
   positionList() {
@@ -30,7 +28,7 @@ class CardCart extends Component {
 
   totalPrice() {
     const { price1, price5, price10 } = this.props.part.idCar;
-    const totalPositions = this.props.part.position.length;
+    const totalPositions = this.props.part.amount.length;
     let totalPrice = 0;
     if (totalPositions < 5) {
       totalPrice = price1 * totalPositions;
@@ -40,7 +38,6 @@ class CardCart extends Component {
     } else {
       totalPrice = price10 * totalPositions;
     }
-
     return (
       <div>
         <p className="totalPrice"><span>Total:</span> {Math.round(totalPrice * 100) / 100}€</p>
@@ -55,12 +52,12 @@ class CardCart extends Component {
       </div>
     )
 
-
   }
   render() {
     const { name, imageUrl } = this.props.part.idCar
     const { _id } = this.props.part;
     const { gameMode } = this.props.participationState;
+    const { amount } = this.props.part;
     return (
       <div className="card-cart-car">
         <div className="card-cart-details flex">
@@ -73,7 +70,8 @@ class CardCart extends Component {
         </div>
         <ul className="card-cart-car-position-list">{this.positionList()}</ul>
         {gameMode && <>
-          {this.totalPrice()}
+          <p className="totalPrice"><span>Total:</span> {Math.round(amount * 100) / 100}€</p>
+          {/* {this.totalPrice()} */}
         </>}
         {!gameMode && <>
           <div className="flex">

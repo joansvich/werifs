@@ -1,0 +1,33 @@
+.login-title {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.login-title h1 {
+  font-weight: 500;
+  font-size: 38px;
+}
+
+.login-details {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 300px;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.login-details-box {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.login-details-wrapper {
+  width: 100%;
+  margin: 0 10px;
+}

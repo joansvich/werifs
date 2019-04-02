@@ -32,14 +32,6 @@
   align-items: center;
 }
 
-.profile-details-input {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: auto;
-  position: relative;
-  justify-content: center;
-}
 
 .profile-img {
   object-fit: cover;
@@ -67,7 +59,7 @@
   margin: 0 0 20px 0;
 }
 
-.label-input {
+.label-component-input {
   position: absolute;
   top: 6px;
   left: 10px;

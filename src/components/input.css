@@ -1,0 +1,28 @@
+.component-input {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+  position: relative;
+  justify-content: center;
+}
+
+.component-input--input {
+  width: 100%;
+  height: 50px;
+  padding: 0 15px;
+  color: #79808e;
+  border: 1px solid #dcdddf;
+  background: #fcfcfc;
+  padding: 10px 15px 0 15px !important;
+  font-size: 18px;
+  margin: 0 0 20px 0;
+}
+
+.label-component-input {
+  position: absolute;
+  top: 6px;
+  left: 10px;
+  color: #bbb;
+  font-size: 10px;
+}

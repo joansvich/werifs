@@ -1,7 +1,6 @@
 .navbar {
   font-family: var(--font-primary);
   width: 100vw;
-  height: 60px;
   background-color: #323248;
   position: fixed;
   z-index: 2;
@@ -12,8 +11,32 @@
   box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
 }
 
+.navbar-container {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  background-color: #56587d;
+  border-radius: 8px;
+  margin: 0 10px;
+}
+
+.navbar-container--nobg {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-radius: 8px;
+  margin: 0 10px;
+}
+
+.navbar-container p {
+  color: white;
+  margin: 0 10px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
 .navbar-height {
-  height: 60px;
+  height: 80px;
 }
 
 .navbar-start {
@@ -26,22 +49,33 @@
 }
 
 .navbar-end {
-  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  position: absolute;
+  right: -191px;
 }
 
 .navbar-img-profile {
-  width: 70px;
-  height: 70px;
+  width: 90px;
+  height: 90px;
   border-radius: 100%;
   position: absolute;
-  top: 10px;
+  margin: 0 10px;
+  top: -30px;
   left: 0;
   box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+}
+
+.shopping-cart {
+  position: relative;
 }
 
 .fas {
   color: #fff;
   font-size: 24px;
+  margin: 10px 20px;
 }
 
 .fas:hover {
@@ -50,13 +84,39 @@
   transition: all 0.2s ease-out;
 }
 
+.icon-logout {
+  width: 30px;
+  height: 30px;
+  fill: #ff5151;
+  margin: 0 10px;
+}
+
+.icon-login {
+  width: 30px;
+  height: 30px;
+  fill: #51ff6e;
+  margin: 0 10px;
+}
+
+.icon-logout:hover {
+  fill: #7aeefb;
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+}
+
 .navbar .link {
-  text-decoration: none;
   font-weight: 500;
+  padding: 0;
   margin: 0;
-  padding: 20px;
+  text-decoration: none;
   color: #fff;
 }
+
+/* .link{
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+} */
 
 .navbar .link:hover {
   cursor: pointer;
@@ -74,9 +134,16 @@
   width: 15px;
   height: 15px;
   border-radius: 100%;
-  top: -12px;
-  left: -10px;
+  top: 0px;
+  right: 41px;
   color: #fff;
   box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
   font-size: 12px;
+}
+
+.navbar-profile-img {
+  width: 45px;
+  height: 45px;
+  border-radius: 100%;
+  border: 2px solid white;
 }

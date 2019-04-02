@@ -39,11 +39,15 @@ class ParticipationProvider extends Component {
   }
 
   getParticipation = () => {
-    console.log('getparticipation');
     return participationService.list()
       .then((listParticipation) => {
+        let amount = 0;
+        listParticipation.map((participation)=>{
+          amount = amount + participation.amount;
+        })
         this.setState({
-          listParticipation
+          listParticipation,
+          amount
         })
       })
       .catch((err) => console.log(err));
@@ -52,7 +56,6 @@ class ParticipationProvider extends Component {
   deleteParticipation = (_id) => {
     participationService.delete(_id)
       .then((data) => {
-        console.log(data);
         this.getParticipation();
       })
       .catch((err) => console.log(err));

@@ -1,15 +1,16 @@
-// import React, { Component } from 'react';
+import React, { Component } from 'react';
+import './input.css'
 
-// class Input extends Component {
-//   render() {
-//     const { text, name, onChange } = this.props;
-//   return (
-//     <div className="create-cars-input">
-//       <input className="input" type="text" name="torque" value={torque} onChange={this.handleChange} />
-//       <label className="label-input" >Par motor:</label>
-//     </div>
-//   );
-// }
-// }
+class Input extends Component {
+  render() {
+    const { text, name, onChange } = this.props;
+  return (
+    <div className="component-input">
+      <input className="component-input--input" type="text" name={name} value={name} onChange={(e)=>onChange(e)} />
+      <label className="label-component-input" >{text}</label>
+    </div>
+  );
+}
+}
 
-// export default Input;
+export default Input;

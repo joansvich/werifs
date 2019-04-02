@@ -3,7 +3,7 @@ import './homepage.css'
 import carsService from '../lib/cars-service';
 import CardCar from '../components/CarCard';
 import Loading from '../components/Loading';
-
+import {Link} from 'react-router-dom';
 
 class HomePage extends Component {
 
@@ -34,36 +34,41 @@ class HomePage extends Component {
   render() {
     return (
       <div className="homepage">
-        <section>
+        <section className="container--wide">
           <div className="initial-banner">
-            <h1>Empieza tu suerte</h1>
+            <h1>GANA EL COCHE DE TUS SUEÑOS</h1>
           </div>
         </section>
-        <section>
-          <h1>¿Cómo funciona?</h1>
+        <section id="howWorks" className="container">
+          <span className="section-line"></span>
+          <h1 className="section-text-header">¿CÓMO FUNCIONA?</h1>
           <div className="how-works">
             <div className="card-how-works">
               <div className="card-how-works-img">
                 <img src="./images/icon-select-car.png" alt="" />
+                <label>1</label>
               </div>
-              <p className="card-how-works-title">Selecciona el coche que quieres</p>
+              <p className="card-how-works-title">Selecciona el coche</p>
             </div>
             <div className="card-how-works">
               <div className="card-how-works-img">
                 <img src="./images/icon-game.png" alt="" />
+                <label>2</label>
               </div>
               <p className="card-how-works-title">Juega al juego</p>
             </div>
             <div className="card-how-works">
               <div className="card-how-works-img">
                 <img src="./images/icon-win.png" alt="" />
+                <label>3</label>
               </div>
               <p className="card-how-works-title">Cada mes un coche</p>
             </div>
           </div>
         </section>
         <section className="container">
-          <h1>Coches disponibles</h1>
+        <span className="section-line"></span>
+          <h1 className="section-text-header">COCHES DISPONIBLES</h1>
           <div className="list-cars">
             {this.state.isLoading ? <><Loading /></> : this.renderCarList()}
           </div>
