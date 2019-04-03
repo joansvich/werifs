@@ -7,6 +7,7 @@
 
 .form-profile {
   text-align: center;
+  width: 100%;
 }
 
 .profile-title {
@@ -32,7 +33,6 @@
   align-items: center;
 }
 
-
 .profile-img {
   object-fit: cover;
   height: 80%;
@@ -45,6 +45,11 @@
 
 .profile-wrapper {
   width: 80%;
+}
+
+.profile-wrapper--img{
+  width: 80%;
+  position: relative;
 }
 
 .input {
@@ -86,4 +91,11 @@
   background-color: #fff;
   color: #f50;
   transition: all 0.2s ease-out;
+}
+
+.button-upload {
+  background-color: 'steelblue';
+  color: white;
+  padding: 10px;
+  border-radius: 4;
 }

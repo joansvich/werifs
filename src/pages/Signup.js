@@ -102,6 +102,7 @@ class Signup extends Component {
           </div>
           <Button
             text="Registrarse"
+            type="normal"
           />
           {showError && <MessageFlash
             text={error}

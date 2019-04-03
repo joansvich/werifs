@@ -74,6 +74,7 @@ class Login extends Component {
           </p>
           <Button
             text="Iniciar sesión"
+            type="done"
           />
           {showError && <MessageFlash
           text={error}

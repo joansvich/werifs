@@ -63,11 +63,11 @@ class ButtonParticipation extends Component {
       })
       if (cent) {
         return (
-          <Button text="Añadido!" done={true} onClick={this.handleClickAdd} />
+          <Button text="Añadido!" type="done" onClick={this.handleClickAdd} />
         )
       } else {
         return (
-          <Button text="Añadir al carrito" onClick={this.handleClickAdd} />
+          <Button text="Añadir al carrito" type="normal" onClick={this.handleClickAdd} />
         )
       }
     }

@@ -9,6 +9,7 @@ import './checkout.css'
 import MessageFlash from '../components/MessageFlash';
 
 
+
 class Checkout extends Component {
 
   state = {
@@ -27,8 +28,8 @@ class Checkout extends Component {
   componentWillUnmount() {
     clearInterval(this.timeoutId);
   }
-  
- 
+
+
   handleClick = async () => {
     try {
       const { stripe } = this.props;
@@ -94,7 +95,11 @@ class Checkout extends Component {
               </div>
               <div id="card-errors" role="alert"></div>
             </div>
-            <Button text={this.state.isPaymentLoading ? 'Loading' : 'Pagar'} onClick={this.handleClick} />
+            <Button
+              type="normal"
+              text={this.state.isPaymentLoading ? 'Loading' : 'Pagar'}
+              onClick={this.handleClick}
+            />
             {showMessage && <>
               <MessageFlash
                 text="Pago realizado correctamente"

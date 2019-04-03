@@ -14,7 +14,6 @@ body {
   padding-top: 80px;
 }
 
-
 .container {
   width: 90%;
   max-width: 1024px;
@@ -45,8 +44,8 @@ body {
   cursor: pointer;
 }
 
-
 /* Component Input */
+
 .input-container {
   display: flex;
   flex-direction: row;
@@ -55,6 +54,7 @@ body {
   width: 60%;
   margin: 0 auto;
 }
+
 .input-wrapper {
   display: flex;
   flex-direction: row;
@@ -113,6 +113,26 @@ section {
   margin: 60px;
   padding: 0 15px;
   color: #555;
+  position: relative;
+}
+
+.title-line {
+  border-top: 3px solid #c7c7c7;
+  display: block;
+  height: 1px;
+  position: relative;
+  top: 50px;
+  width: 78%;
+  margin: auto;
+}
+
+.title-text-header {
+  background-color: #FFFFFF;
+  display: inline-block;
+  margin: 30px;
+  padding: 0 15px;
+  color: #555;
+  font-size: 28px;
   position: relative;
 }
 

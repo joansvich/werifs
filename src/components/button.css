@@ -6,26 +6,26 @@
   margin: 10px;
   margin-bottom: 20px;
   font-weight: 300;
-  background-color: #2b91ff;
   color: #fff;
   text-align: center;
   border: none;
   font-size: 20px;
+  outline: none;
+}
+
+.compButton--normal{
+  background-color: #2b91ff;
 }
 
 .compButton--done {
-  align-self: center;
-  padding: 5px 10px;
-  border-radius: 8px;
-  font-size: 25px;
-  margin: 10px;
-  margin-bottom: 20px;
-  font-weight: 300;
   background-color: #00de30;
-  color: #fff;
-  text-align: center;
-  border: none;
-  font-size: 20px;
+}
+
+.compButton--logout {
+  background-color: #de0000;
+}
+.compButton--error {
+  background-color: #de0000;
 }
 
 .compButton:hover {
