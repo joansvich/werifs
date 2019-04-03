@@ -66,6 +66,7 @@
   z-index: 3;
 }
 
+
 .game-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;

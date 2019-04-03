@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import carsService from '../lib/cars-service';
 import './createcars.css'
+import Button from '../components/Button';
 
 class CreateCars extends Component {
   state = {
@@ -22,8 +23,8 @@ class CreateCars extends Component {
     const { name, power, retailPrice, velocity, torque, contamination, drivetrain, imageUrl, price1, price5, price10 } = this.state
 
     carsService.create({ name, power, retailPrice, velocity, torque, contamination, drivetrain, imageUrl, price1, price5, price10 })
-      .then((carCreated) => { console.log(carCreated) })
-      .catch(error => console.log(error))
+      .then((carCreated) => this.props.history.push('/'))
+      .catch()
   }
 
   handleChange = (event) => {
@@ -35,8 +36,9 @@ class CreateCars extends Component {
     const { name, power, retailPrice, velocity, torque, contamination, drivetrain, imageUrl, price1, price5, price10 } = this.state;
     return (
       <form className="form-create-cars" onSubmit={this.handleFormSubmit}>
-        <div className="create-cars-title">
-          <h1>Añadir coche</h1>
+        <div className="container-title">
+          <span className="title-line"></span>
+          <h1 className="title-text-header">Añadir coche</h1>
         </div>
         <div className="create-cars-details">
           <div className="create-cars-details-box">
@@ -92,7 +94,11 @@ class CreateCars extends Component {
             </div>
           </div>
         </div >
-        <button type="submit" className="handleEdit" >Crear coche</button>
+        <Button
+          type="normal"
+          text="Crear coche"
+        />
+        {/* <button type="submit" className="handleEdit" >Crear coche</button> */}
       </form >
     )
   }

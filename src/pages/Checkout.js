@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Loading from '../components/Loading'
-import { Elements, CardElement, injectStripe } from 'react-stripe-elements';
+import { CardElement, injectStripe } from 'react-stripe-elements';
 import Button from '../components/Button';
 import checkoutService from '../lib/checkout-service';
 import { withParticipation } from '../providers/ParticipationProvider';
@@ -49,7 +49,6 @@ class Checkout extends Component {
 
       const payment = await checkoutService.create(amount, token, listParticipation)
       if (payment) {
-        console.log(payment);
         if (payment.status === "succeeded") {
           
         }
@@ -76,10 +75,9 @@ class Checkout extends Component {
   render() {
     const { isLoading, showMessage } = this.state;
     const { amount } = this.props.participationState;
-    let showCheckout = this.props.participationState.listParticipation.length;
     return (
       <div className="container stripe">
-        {showCheckout && <>
+        {amount>0 && <>
           {isLoading && <Loading />}
           {!isLoading && <>
             <div className="stripe-wrapper">
@@ -118,7 +116,7 @@ class Checkout extends Component {
 
           </>}
         </>}
-        {!showCheckout && this.props.history.push('/')}
+        {amount===0 && this.props.history.push('/')}
       </div>
     );
   }

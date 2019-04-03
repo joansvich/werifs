@@ -48,8 +48,7 @@
   color: #666;
 }
 
-
-.profile-wrapper--img{
+.profile-wrapper--img {
   position: relative;
 }
 
@@ -99,4 +98,27 @@
   color: white;
   padding: 10px;
   border-radius: 4;
+}
+
+.container-cards-paid {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.cards-paid-categories {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 15px;
+  color: #a0a0a0;
+}
+
+.cards-paid-categories label{
+  width: 33%;
+}
+
+.cards-paid-categories label:last-child{
+  width: 33%;
+  text-align: right;
 }

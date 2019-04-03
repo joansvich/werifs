@@ -113,7 +113,6 @@ class CardCart extends Component {
   render() {
     const { name, imageUrl } = this.props.part.idCar
     const { _id, position, amount } = this.props.part;
-    const { gameMode } = this.props.participationState;
     let positionLength = position.length
     return (
       <div className="card-cart-car">

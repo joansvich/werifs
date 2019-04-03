@@ -36,7 +36,6 @@ class ButtonParticipation extends Component {
   }
 
   componentWillUnmount() {
-    console.log('um');
     clearInterval(this.timeoutId);
   }
 

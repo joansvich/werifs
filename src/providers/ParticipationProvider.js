@@ -33,21 +33,30 @@ class ParticipationProvider extends Component {
 
   state = {
     listParticipation: [],
+    listPaid: [],
     showCard: false,
     gameMode: false,
     amount: 0
   }
 
   getParticipation = () => {
-    console.log('getPart');
     return participationService.list()
-      .then((listParticipation) => {
+      .then((listParticipations) => {
         let amount = 0;
+        
+        const listParticipation = listParticipations.filter((participation)=>{
+          return participation.paid === false;
+        })
+        const listPaid = listParticipations.filter((participation)=>{
+          return participation.paid===true;
+        })
         listParticipation.map((participation)=>{
           amount = amount + participation.amount;
         })
+
         this.setState({
           listParticipation,
+          listPaid,
           amount
         })
       })
@@ -102,9 +111,9 @@ class ParticipationProvider extends Component {
   }
 
   resetParticipationState = () => {
-    console.log('resetPartState');
     this.setState({
       listParticipation: [],
+      listPaid: [],
       showCard: false,
       gameMode: false,
       amount: 0

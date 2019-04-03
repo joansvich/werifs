@@ -1,5 +1,5 @@
 .stripe {
-  width: 670px;
+  max-width: 670px;
   margin: 100px auto;
   height: 100%;
   font-size: 16px;

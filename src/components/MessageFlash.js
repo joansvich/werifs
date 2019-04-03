@@ -5,7 +5,7 @@ import './messageflash.css';
 class MessageFlash extends Component {
 
   render() {
-    console.log('render Message');
+
     const { text, status } = this.props
     return (
       <div className='alert-show'>

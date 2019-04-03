@@ -8,7 +8,7 @@ import { compose } from 'recompose';
 import firebase from 'firebase';
 import FileUploader from 'react-firebase-file-uploader';
 import CustomUploadButton from 'react-firebase-file-uploader/lib/CustomUploadButton';
-
+import CardParticipation from '../components/CardParticipation';
 
 const config = {
   apiKey: "AIzaSyADazKB_Er76uObR6OP6I98OUOlpJqyYPI",
@@ -32,7 +32,7 @@ class Private extends Component {
     isLoading: true,
     isUploading: false,
     showButtonEdit: false,
-    avatar: ""
+    avatar: "",
   }
 
 
@@ -74,7 +74,6 @@ class Private extends Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state.imageUrl);
     const username = this.state.username;
     const password = this.state.password;
     const adress = this.state.adress;
@@ -83,6 +82,9 @@ class Private extends Component {
     const imageUrl = this.state.imageUrl;
     this.props.update({ username, password, adress, phone, email, imageUrl })
       .catch(error => console.log(error))
+    this.setState({
+      showButtonEdit: false
+    })
   }
 
 
@@ -95,6 +97,16 @@ class Private extends Component {
       })
     }
     this.setState({ [name]: value });
+  }
+
+  renderListPaid = () => {
+    const { listPaid } = this.props.participationState;
+    return listPaid.map((participation, id) => {
+      return <CardParticipation
+        participation={participation}
+        key={`id-${id}`}
+      />
+    })
   }
 
   render() {
@@ -161,6 +173,18 @@ class Private extends Component {
               />
             }
           </form>
+          <div className="container-title">
+            <span className="title-line"></span>
+            <h1 className="title-text-header">Participaciones compradas</h1>
+            <div className="container-cards-paid">
+              <div className="cards-paid-categories">
+                <label>Marca y modelo</label>
+                <label>Posiciones compradas</label>
+                <label>Precio</label>
+              </div>
+              {this.state.isLoading ? <><Loading /></> : this.renderListPaid()}
+            </div>
+          </div>
           <Button
             text="Desconectar"
             onClick={this.handleLogout}
