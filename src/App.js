@@ -27,25 +27,24 @@ class App extends Component {
     return (
       <AuthProvider>
         <ParticipationProvider>
-          <div>
-            <Navbar />
-            <div className="body">
-              <Switch>
-                <Route exact path="/" component={HomePage} />
-                <AnonRoute path="/signup" component={Signup} />
-                <AnonRoute path="/login" component={Login} />
-                <PrivateRoute path="/private" component={Private} />
-                <AdminRoute path="/create" component={CreateCars} />
-                <PrivateRoute path="/game" component={Game} />
-                <StripeProvider apiKey="pk_test_bCVmuIR36FGdiCbTo1dxtji400jIZtcgOB">
-                  <Elements>
-                    <PrivateRoute path="/checkout" component={Checkout} />
-                  </Elements>
-                </StripeProvider>
-              </Switch>
-            </div>
-            <Footer />
+          <Navbar />
+          <div className="body">
+            <Switch>
+              <Route exact path="/" component={HomePage} />
+              <AnonRoute path="/signup" component={Signup} />
+              <AnonRoute path="/login" component={Login} />
+              <PrivateRoute path="/private" component={Private} />
+              <AdminRoute path="/create" component={CreateCars} />
+              <PrivateRoute path="/game" component={Game} />
+              <StripeProvider apiKey="pk_test_bCVmuIR36FGdiCbTo1dxtji400jIZtcgOB">
+                <Elements>
+                  <PrivateRoute path="/checkout" component={Checkout} />
+                </Elements>
+              </StripeProvider>
+            </Switch>
           </div>
+          <Footer />
+
         </ParticipationProvider>
       </AuthProvider>
     )

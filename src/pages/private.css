@@ -45,10 +45,11 @@
 
 .profile-wrapper {
   width: 80%;
+  color: #666;
 }
 
+
 .profile-wrapper--img{
-  width: 80%;
   position: relative;
 }
 

@@ -14,7 +14,7 @@ class Signup extends Component {
     adress: "",
     phone: "",
     email: "",
-    imageUrl: "",
+    // imageUrl: "",
     error: "",
     showError: false
   };
@@ -26,9 +26,9 @@ class Signup extends Component {
     const adress = this.state.adress;
     const phone = this.state.phone;
     const email = this.state.email;
-    const imageUrl = this.state.imageUrl;
+    // const imageUrl = this.state.imageUrl;
 
-    this.props.signup({ username, password, adress, phone, email, imageUrl })
+    this.props.signup({ username, password, adress, phone, email })
       .then((error) => {
         if (error) {
           this.setState({
@@ -63,12 +63,13 @@ class Signup extends Component {
   }
 
   render() {
-    const { username, password, adress, phone, email, imageUrl, showError, error } = this.state;
+    const { username, password, adress, phone, email, showError, error } = this.state;
     return (
       <div>
         <form className="text-center" onSubmit={this.handleFormSubmit}>
-          <div className="login-title">
-            <h1>Crear una cuenta</h1>
+          <div className="container-title">
+            <span className="title-line"></span>
+            <h1 className="title-text-header">Crear una cuenta</h1>
           </div>
           <div className="input-container">
             <div className="input-wrapper">
@@ -94,10 +95,10 @@ class Signup extends Component {
                 <input required={true} className="component-input--input" type="email" name="email" value={email} onChange={this.handleChange} />
                 <label className="label-component-input">Email:</label>
               </div>
-              <div className="component-input">
+              {/* <div className="component-input">
                 <input required={true} className="component-input--input" type="text" name="imageUrl" value={imageUrl} onChange={this.handleChange} />
                 <label className="label-component-input">Imagen:</label>
-              </div>
+              </div> */}
             </div>
           </div>
           <Button

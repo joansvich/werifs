@@ -18,7 +18,7 @@ class Navbar extends Component {
     }
   }
   render() {
-    const { isLogged, user } = this.props;
+    const { isLogged, user, isAdmin } = this.props;
     const {amount} = this.props.participationState;
     let countPart = 0;
     let showBullet = false;
@@ -36,7 +36,8 @@ class Navbar extends Component {
           {isLogged && <>
             <div className="navbar-end">
             <div className="navbar-container--nobg">
-            <Link className="link" to='/private'><img className="navbar-profile-img" src={user.imageUrl} alt="" /></Link>
+            {isAdmin && <Link id="link--img" className="link" to='/create'><img className="navbar-profile-img" src="./images/add-car.png" alt="" /></Link>}
+            <Link id="link--img" className="link" to='/private'><img className="navbar-profile-img" src={user.imageUrl} alt="" /></Link>
             </div>
             <div className="navbar-container">
               <p>{amount}€</p>

@@ -100,14 +100,15 @@ class Private extends Component {
   render() {
     const { user } = this.props
     const { isLoading, isUploading } = this.state;
-    return (
+    return (<>
+      <div className="container-title">
+        <span className="title-line"></span>
+        <h1 className="title-text-header">Bienvenido de nuevo {user.username}</h1>
+      </div>
       <div className="profile container">
         {isLoading && <Loading />}
         {!isLoading && <>
           <form className="form-profile" onSubmit={this.handleFormSubmit}>
-            <div className="profile-title">
-              <h1>Bienvenido de nuevo {user.username}</h1>
-            </div>
             <div className="profile-details">
               <div className="profile-details-box">
                 <div className="profile-wrapper">
@@ -131,7 +132,7 @@ class Private extends Component {
                 </div>
               </div>
               <div className="profile-details-box">
-                <div className="profile-wrapper--img">
+                <div className="profile-wrapper profile-wrapper--img">
                   <h2>Imagen</h2>
                   {isUploading && <Loading />}
                   {!isUploading &&
@@ -146,7 +147,7 @@ class Private extends Component {
                     onUploadSuccess={this.handleUploadSuccess}
                     onProgress={this.handleProgress}
                     style={
-                      { backgroundColor: 'steelblue', color: 'white', padding: 10, borderRadius: 4, position: 'absolute',  bottom: '-66px', transform: 'translate(-50%,-50%)', cursor:'pointer' }
+                      { backgroundColor: 'steelblue', color: 'white', padding: 10, borderRadius: 4, position: 'absolute', bottom: '-66px', transform: 'translate(-50%,-50%)', cursor: 'pointer' }
                     }
                   >
                     Sube una foto
@@ -154,10 +155,10 @@ class Private extends Component {
                 </div>
               </div>
             </div>
-            {this.state.showButtonEdit && 
-            <Button type="normal" 
-            text="Guardar"
-            /> 
+            {this.state.showButtonEdit &&
+              <Button type="normal"
+                text="Guardar"
+              />
             }
           </form>
           <Button
@@ -167,6 +168,7 @@ class Private extends Component {
           />
         </>}
       </div>
+    </>
     )
   }
 }

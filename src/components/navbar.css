@@ -66,6 +66,17 @@
   box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
 }
 
+.navbar-img-add-car {
+  width: 90px;
+  height: 90px;
+  border-radius: 100%;
+  position: absolute;
+  margin: 0 10px;
+  top: -30px;
+  left: 104px;
+  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+}
+
 .shopping-cart {
   position: relative;
 }
@@ -108,6 +119,10 @@
   margin: 0;
   text-decoration: none;
   color: #fff;
+}
+
+#link--img{
+  margin: 0 20px;
 }
 
 /* .link{

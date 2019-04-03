@@ -9,9 +9,8 @@ class CheckoutService {
     })
   }
 
-  create(amount, token) {
-    console.log(amount);
-    return this.checkout.post('/checkout/', { amount:amount*100, token })
+  create(amount, token, listParticipation) {
+    return this.checkout.post('/checkout/', { amount:amount*100, token, listParticipation })
       .then(({ data }) => {
         return data
       });

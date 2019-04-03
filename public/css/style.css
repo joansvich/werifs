@@ -10,8 +10,10 @@ body {
   margin: 0;
 }
 
+
 .body {
   padding-top: 80px;
+  min-height: 63vh;
 }
 
 .container {
@@ -114,6 +116,10 @@ section {
   padding: 0 15px;
   color: #555;
   position: relative;
+}
+
+.container-title{
+  text-align: center;
 }
 
 .title-line {

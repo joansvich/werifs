@@ -13,7 +13,7 @@ class Login extends Component {
     username: "",
     password: "",
     error: "",
-    showError:false
+    showError: false
   }
 
   handleFormSubmit = (event) => {
@@ -56,32 +56,35 @@ class Login extends Component {
   render() {
     const { username, password, showError, error } = this.state;
     return (
-      <form onSubmit={this.handleFormSubmit}>
-        <div className="login-title">
-          <h1>Iniciar sesión</h1>
+      <>
+        <div className="container-title">
+          <span className="title-line"></span>
+          <h1 className="title-text-header">Iniciar sesión</h1>
         </div>
-        <div className="input-wrapper">
-          <div className="component-input">
-            <input required={true} className="component-input--input" type="text" name="username" value={username} onChange={this.handleChange} />
-            <label className="label-component-input">Usuario:</label>
-          </div>
-          <div className="component-input">
-            <input required={true} className="component-input--input" type="password" name="password" value={password} onChange={this.handleChange} />
-            <label className="label-component-input">Contraseña:</label>
-          </div>
-          <p>¿Aún no estás registrado?
+        <form onSubmit={this.handleFormSubmit}>
+          <div className="input-wrapper">
+            <div className="component-input">
+              <input required={true} className="component-input--input" type="text" name="username" value={username} onChange={this.handleChange} />
+              <label className="label-component-input">Usuario:</label>
+            </div>
+            <div className="component-input">
+              <input required={true} className="component-input--input" type="password" name="password" value={password} onChange={this.handleChange} />
+              <label className="label-component-input">Contraseña:</label>
+            </div>
+            <p>¿Aún no estás registrado?
           <Link to={"/signup"}> Regístrate</Link>
-          </p>
-          <Button
-            text="Iniciar sesión"
-            type="done"
-          />
-          {showError && <MessageFlash
-          text={error}
-          status="error"
-        />}
-        </div>
-      </form>
+            </p>
+            <Button
+              text="Iniciar sesión"
+              type="done"
+            />
+            {showError && <MessageFlash
+              text={error}
+              status="error"
+            />}
+          </div>
+        </form>
+      </>
     )
   }
 }

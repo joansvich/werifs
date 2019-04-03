@@ -4,10 +4,10 @@ import { Elements, CardElement, injectStripe } from 'react-stripe-elements';
 import Button from '../components/Button';
 import checkoutService from '../lib/checkout-service';
 import { withParticipation } from '../providers/ParticipationProvider';
+import { withAuth } from '../providers/AuthProvider';
 import { compose } from 'recompose';
 import './checkout.css'
 import MessageFlash from '../components/MessageFlash';
-
 
 
 class Checkout extends Component {
@@ -34,7 +34,8 @@ class Checkout extends Component {
     try {
       const { stripe } = this.props;
       const { amount } = this.props.participationState;
-      const name = "Joan";
+      const name = this.props.user.username;
+      const { listParticipation } = this.props.participationState
       const data = await stripe.createToken({
         name
       })
@@ -46,8 +47,12 @@ class Checkout extends Component {
       }
       const token = data.token.id;
 
-      const payment = await checkoutService.create(amount, token)
+      const payment = await checkoutService.create(amount, token, listParticipation)
       if (payment) {
+        console.log(payment);
+        if (payment.status === "succeeded") {
+          
+        }
         this.setState({
           isPaymentLoading: false,
           showMessage: true
@@ -63,6 +68,7 @@ class Checkout extends Component {
       this.setState({
         showMessage: false
       })
+      this.props.getParticipation();
     }, 3900)
   }
 
@@ -70,47 +76,51 @@ class Checkout extends Component {
   render() {
     const { isLoading, showMessage } = this.state;
     const { amount } = this.props.participationState;
+    let showCheckout = this.props.participationState.listParticipation.length;
     return (
       <div className="container stripe">
-        {isLoading && <Loading />}
-        {!isLoading && <>
-          <div className="stripe-wrapper">
-            <h1>Detalles del pago:</h1>
-            <p className="stripe-total-amount"><span>Total:</span> {amount}€</p>
-            <div className="form-row">
-              <div className="stripe-input">
-                <label className="stripe-label" htmlFor="card-element">Tarjeta de credito</label>
-                <div id="card-element">
-                  <CardElement className='StripeElement' style={{
-                    base: {
-                      iconColor: '#00041A',
-                      fontWeight: 400,
-                      fontSize: '15px',
-                      '::placeholder': {
-                        color: '#555',
+        {showCheckout && <>
+          {isLoading && <Loading />}
+          {!isLoading && <>
+            <div className="stripe-wrapper">
+              <h1>Detalles del pago:</h1>
+              <p className="stripe-total-amount"><span>Total:</span> {amount}€</p>
+              <div className="form-row">
+                <div className="stripe-input">
+                  <label className="stripe-label" htmlFor="card-element">Tarjeta de credito</label>
+                  <div id="card-element">
+                    <CardElement className='StripeElement' style={{
+                      base: {
+                        iconColor: '#00041A',
+                        fontWeight: 400,
+                        fontSize: '15px',
+                        '::placeholder': {
+                          color: '#555',
+                        }
                       }
-                    }
-                  }} />
+                    }} />
+                  </div>
                 </div>
+                <div id="card-errors" role="alert"></div>
               </div>
-              <div id="card-errors" role="alert"></div>
-            </div>
-            <Button
-              type="normal"
-              text={this.state.isPaymentLoading ? 'Loading' : 'Pagar'}
-              onClick={this.handleClick}
-            />
-            {showMessage && <>
-              <MessageFlash
-                text="Pago realizado correctamente"
-                status="done"
+              <Button
+                type="normal"
+                text={this.state.isPaymentLoading ? 'Loading' : 'Pagar'}
+                onClick={this.handleClick}
               />
-            </>}
-          </div>
+              {showMessage && <>
+                <MessageFlash
+                  text="Pago realizado correctamente"
+                  status="done"
+                />
+              </>}
+            </div>
 
+          </>}
         </>}
+        {!showCheckout && this.props.history.push('/')}
       </div>
     );
   }
 }
-export default compose(injectStripe, withParticipation)(Checkout);
+export default compose(injectStripe, withParticipation, withAuth)(Checkout);

@@ -22,7 +22,7 @@
   background: white;
   padding: 0 30px;
   left: 0;
-  bottom: -218px;
+  bottom: -228px;
   transition: bottom 0.3s ease-in-out;
 }
 
@@ -37,12 +37,12 @@
   flex-direction: row;
   flex-wrap: wrap;
   font-weight: 300;
-  background-color:  rgb(247, 247, 247);
+  background-color: rgb(247, 247, 247);
   padding: 0;
   font-size: 14px;
 }
 
-.car-details span{
+.car-details span {
   font-weight: 500;
 }
 
@@ -52,7 +52,7 @@
   flex-basis: 50%;
 }
 
-.car-details li{
+.car-details li {
   margin: 5px 0;
 }
 
@@ -62,9 +62,11 @@
   flex-wrap: wrap;
   width: 100%;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 0 10px;
   background-color: rgba(123, 237, 251, 0.52);
   font-size: 14px;
+  height: 60px;
+  align-items: center;
 }
 
 .car-prices span {
@@ -73,7 +75,18 @@
 }
 
 .car-prices p {
-  font-weight: 300;
+  font-weight: 400;
+  margin: 0;
+  font-size: 15px;
+}
+
+.label-prices {
+  position: absolute;
+  background: none;
+  font-size: 12px;
+  bottom: 107px;
+  left: 35px;
+  color: #555;
 }
 
 .pj-card img {

@@ -23,6 +23,7 @@ class CarCard extends Component {
                   <li className="li-imp"><span>Tracción: </span>{drivetrain}</li>
                 </ul>
                 <div className="car-prices">
+                  <label className="label-prices">Precio por participacion</label>
                   <p><span>1</span> {price1}€/u</p>
                   <p><span>5+</span> {price5}€/u</p>
                   <p><span>10+</span> {price10}€/u</p>
