@@ -5,6 +5,7 @@ import AnonRoute from './components/AnonRoute';
 import AdminRoute from './components/AdminRoute';
 import { Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import Private from './pages/Private';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
@@ -43,6 +44,7 @@ class App extends Component {
                 </StripeProvider>
               </Switch>
             </div>
+            <Footer />
           </div>
         </ParticipationProvider>
       </AuthProvider>
