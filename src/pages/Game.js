@@ -10,7 +10,8 @@ import Button from '../components/Button';
 class game extends Component {
   state = {
     slider: 5000,
-    position: []
+    position: [],
+    showInstructions: true
   }
 
   handleSlider = (e) => {
@@ -31,6 +32,12 @@ class game extends Component {
     this.setState({ [name]: parseInt(value) });
   }
 
+  handleShowInstructions = () => {
+    this.setState({
+      showInstructions: false
+    })
+  }
+
   renderListCars() {
     const { position } = this.state
     return position.map((pos, id) => {
@@ -49,9 +56,30 @@ class game extends Component {
 
   render() {
     let showGame = this.props.participationState.listParticipation.length;
+    const { showInstructions } = this.state;
     return (
       <div className="game">
         {showGame && <>
+          {showInstructions && <>
+            <div className="game-instructions">
+              <h1>Cómo se juega</h1>
+              <p>Verás un vídeo de 3 segundos donde saldrá una pelota y tendrás que 
+                marcar con el slider dónde crees que caerá.
+              </p>
+              <p>Tendrás tres botones en la parte inferior:</p>
+              <ul>
+                <li><span>Añadir posición:</span> Te permite añadir al carrito 
+                la posición deseada.</li>
+                <li><span>+ y -:</span> Te permite subir o bajar de posición por unidades,
+                para ser más preciso.</li>
+              </ul>
+              <Button
+                type="error"
+                onClick={this.handleShowInstructions}
+                text="Cerrar"
+              />
+            </div>
+          </>}
           <span className="title-line"></span>
           <h1 className="title-text-header">JUEGO</h1>
           <div className="game-video">

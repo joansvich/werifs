@@ -19,7 +19,7 @@ class CarCard extends Component {
                 </ul>
                 <ul>
                   <li className="li-imp"><span>Par: </span>{torque} Nm</li>
-                  <li><span>Co2: </span>{contamination}</li>
+                  <li><span>Co2: </span>{contamination} gr/km</li>
                   <li className="li-imp"><span>Tracción: </span>{drivetrain}</li>
                 </ul>
                 <div className="car-prices">
