@@ -64,21 +64,16 @@ class Checkout extends Component {
 
   timeout = () => {
     this.timeoutId = setTimeout(() => {
-      this.props.getParticipation()
-        .then(() => {
-          this.setState({
-            showMessage: false,
-            amount: this.props.participationState.amount
-          })
-        })
+      this.props.getParticipation();
     }, 3900)
 
   }
 
 
   render() {
-    const { isLoading, showMessage, amount } = this.state;
-    console.log(amount);
+    const { isLoading, showMessage } = this.state;
+    console.log(this.props.participationState.amount)
+    const {amount} = this.props.participationState
     return (
       <div className="container stripe">
         {amount > 0 && <>

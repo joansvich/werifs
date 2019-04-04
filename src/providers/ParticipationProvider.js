@@ -44,7 +44,7 @@ class ParticipationProvider extends Component {
     return participationService.list()
       .then((listParticipations) => {
         let amount = 0;
-        
+        console.log('a')
         const listParticipation = listParticipations.filter((participation)=>{
           return participation.paid === false;
         })
