@@ -40,6 +40,7 @@ class ParticipationProvider extends Component {
   }
 
   getParticipation = () => {
+    console.log('getPart');
     return participationService.list()
       .then((listParticipations) => {
         let amount = 0;

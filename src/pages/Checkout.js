@@ -10,18 +10,22 @@ import './checkout.css'
 import MessageFlash from '../components/MessageFlash';
 
 
+
 class Checkout extends Component {
 
   state = {
     isLoading: true,
     isPaymentLoading: false,
-    showMessage: false
+    showMessage: false,
+    amount: 1
   }
 
   componentDidMount() {
     this.props.changeShowCard();
+    console.log(this.props.participationState.amount);
     this.setState({
       isLoading: false,
+      amount: this.props.participationState.amount
     })
   }
 
@@ -46,12 +50,8 @@ class Checkout extends Component {
         })
       }
       const token = data.token.id;
-
       const payment = await checkoutService.create(amount, token, listParticipation)
       if (payment) {
-        if (payment.status === "succeeded") {
-          
-        }
         this.setState({
           isPaymentLoading: false,
           showMessage: true
@@ -64,20 +64,24 @@ class Checkout extends Component {
 
   timeout = () => {
     this.timeoutId = setTimeout(() => {
-      this.setState({
-        showMessage: false
-      })
-      this.props.getParticipation();
+      this.props.getParticipation()
+        .then(() => {
+          this.setState({
+            showMessage: false,
+            amount: this.props.participationState.amount
+          })
+        })
     }, 3900)
+
   }
 
 
   render() {
-    const { isLoading, showMessage } = this.state;
-    const { amount } = this.props.participationState;
+    const { isLoading, showMessage, amount } = this.state;
+    console.log(amount);
     return (
       <div className="container stripe">
-        {amount>0 && <>
+        {amount > 0 && <>
           {isLoading && <Loading />}
           {!isLoading && <>
             <div className="stripe-wrapper">
@@ -115,7 +119,7 @@ class Checkout extends Component {
             </div>
           </>}
         </>}
-        {amount===0 && this.props.history.push('/')}
+        {amount === 0 && this.props.history.push('/')}
       </div>
     );
   }
