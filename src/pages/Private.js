@@ -176,14 +176,14 @@ class Private extends Component {
           <div className="container-title">
             <span className="title-line"></span>
             <h1 className="title-text-header">Participaciones compradas</h1>
-            <div className="container-cards-paid">
-              <div className="cards-paid-categories">
-                <label>Marca y modelo</label>
-                <label>Posiciones compradas</label>
-                <label>Precio</label>
-              </div>
-              {this.state.isLoading ? <><Loading /></> : this.renderListPaid()}
+          </div>
+          <div className="container-cards-paid">
+            <div className="cards-paid-categories">
+              <label>Marca y modelo</label>
+              <label>Posiciones compradas</label>
+              <label>Precio</label>
             </div>
+            {this.state.isLoading ? <><Loading /></> : this.renderListPaid()}
           </div>
           <Button
             text="Desconectar"

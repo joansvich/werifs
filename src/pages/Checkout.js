@@ -113,7 +113,6 @@ class Checkout extends Component {
                 />
               </>}
             </div>
-
           </>}
         </>}
         {amount===0 && this.props.history.push('/')}
