@@ -10,7 +10,6 @@ import './checkout.css'
 import MessageFlash from '../components/MessageFlash';
 
 
-
 class Checkout extends Component {
 
   state = {
@@ -72,8 +71,8 @@ class Checkout extends Component {
 
   render() {
     const { isLoading, showMessage } = this.state;
-    console.log(this.props.participationState.amount)
-    const {amount} = this.props.participationState
+
+    const { amount } = this.props.participationState
     return (
       <div className="container stripe">
         {amount > 0 && <>

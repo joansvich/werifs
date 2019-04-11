@@ -6,14 +6,21 @@ class CardParticipation extends Component {
 
   renderPositions = () => {
     const { position } = this.props.participation;
-    return position.map((pos,id) => {
-      return <p key={`id-${id}`} className="card-paid-position">{pos}</p>
+    return position.map((pos, i) => {
+      return <p key={ i } className="card-paid-position">{pos}</p>
     })
 
   }
 
   render() {
     const { idCar, amount } = this.props.participation;
+
+    const { position } = this.props.participation;
+
+    const positionItems = position.map((pos, i) => {
+      return <p key={ i } className="card-paid-position">{pos}</p>
+    });
+
     return (
       <div className="card-paid">
         <div className="container-card-paid name-card-paid">
@@ -21,7 +28,7 @@ class CardParticipation extends Component {
           <p>{idCar.name}</p>
         </div>
         <div className="container-card-paid card-paid-list-positions">
-          {this.renderPositions()}
+          { positionItems }
         </div>
         <img className="card-paid-logo" src="./images/paid.png" alt=""/>
         <div className="container-card-paid">

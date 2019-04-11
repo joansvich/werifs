@@ -8,6 +8,16 @@ import { withParticipation } from '../providers/ParticipationProvider';
 
 class CardCart extends Component {
 
+
+  constructor(props) {
+    super(props);
+
+    this.handleClick = this.handleClick.bind(this);
+
+  }
+
+
+  /* autobind-decorator */ 
   handleClick = () => {
     this.props.deleteParticipation(this.props.part._id);
   }

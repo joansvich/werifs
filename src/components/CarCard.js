@@ -7,6 +7,7 @@ class CarCard extends Component {
     const { _id, name, power, retailPrice, velocity, torque, contamination, drivetrain, imageUrl, price1, price5, price10 } = this.props.car;
     return (
         <div className="car-card">
+        {/* { renderCarProp(...) } */}
           <div className="pj-card">
             <img src={imageUrl} className="img-fluid" alt="" />
             <div className="car-card-description">
