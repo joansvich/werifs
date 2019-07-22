@@ -62,7 +62,7 @@ class game extends Component {
         {showGame && <>
           {showInstructions && <>
             <div className="game-instructions">
-              <h1>Cómo se juega</h1>
+              <h1>How its work</h1>
               <p>Verás un vídeo de 3 segundos donde saldrá una pelota y tendrás que 
                 marcar con el slider dónde crees que caerá.
               </p>
