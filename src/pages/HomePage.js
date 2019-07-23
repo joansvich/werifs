@@ -3,27 +3,29 @@ import './homepage.css'
 import carsService from '../lib/cars-service';
 import CardCar from '../components/CarCard';
 import Loading from '../components/Loading';
-import {Link} from 'react-router-dom';
+
+//REDUX
+import { connect } from 'react-redux';
+import { addCars } from '../actions/carsActions';
+
 
 class HomePage extends Component {
 
   state = {
-    listCars: [],
     isLoading: true
   }
 
-  componentDidMount() {
-    carsService.list()
-      .then((carList) => {
-        this.setState({
-          listCars: carList,
-          isLoading: false
-        })
-      })
+  async componentDidMount() {
+    const carList = await carsService.list()
+    this.props.addCars(carList)
+    this.setState({
+      isLoading: false
+    })
   }
 
   renderCarList() {
-    return this.state.listCars.map((car, id) => {
+    const cars = this.props.cars;
+    return cars.map((car, id) => {
       return <CardCar
         key={`id-${id}`}
         car={car}
@@ -67,7 +69,7 @@ class HomePage extends Component {
           </div>
         </section>
         <section className="container">
-        <span className="section-line"></span>
+          <span className="section-line"></span>
           <h1 className="section-text-header">COCHES DISPONIBLES</h1>
           <div className="list-cars">
             {this.state.isLoading ? <><Loading /></> : this.renderCarList()}
@@ -78,4 +80,8 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage;
+const mapStateToProps = state => ({
+  cars: state.cars.cars
+})
+
+export default connect(mapStateToProps, { addCars })(HomePage);
