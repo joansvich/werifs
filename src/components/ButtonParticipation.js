@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 import { withParticipation } from '../providers/ParticipationProvider';
 import './buttonparticipation.css'
 import Button from './Button';
-import Loading from './Loading';
 import { withAuth } from '../providers/AuthProvider';
 import { compose } from 'recompose';
 import MessageFlash from './MessageFlash';
+
+//REDUX
+import { connect } from 'react-redux';
+import { addParticipation } from '../actions/participationActions';
+
 
 class ButtonParticipation extends Component {
 
@@ -51,18 +55,19 @@ class ButtonParticipation extends Component {
 
 
   updateButton = () => {
+    const { participations } = this.props;
     let cent = false;
-    if (!this.props.participationState.listParticipation) {
+    if (!participations) {
       return <Button text="Añadir al carrito" onClick={this.handleClickAdd} />
     } else {
-      this.props.participationState.listParticipation.map((participation) => {
+      participations.map((participation) => {
         if (participation.idCar._id === this.props.idCar) {
           cent = true
         }
       })
       if (cent) {
         return (
-          <Button disabled={ cent } text="Añadido!" type="done" onClick={this.handleClickAdd} />
+          <Button disabled={cent} text="Añadido!" type="done" onClick={this.handleClickAdd} />
         )
       } else {
         return (
@@ -86,4 +91,11 @@ class ButtonParticipation extends Component {
   }
 }
 
-export default compose(withAuth, withParticipation)(ButtonParticipation);
+
+const mapStateToProps = state => ({
+  participations: state.participations.participations
+})
+
+export default connect(mapStateToProps, { addParticipation })(ButtonParticipation);
+
+// export default compose(withAuth, withParticipation)(ButtonParticipation);

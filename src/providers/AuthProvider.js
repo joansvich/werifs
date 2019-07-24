@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import authService from '../lib/auth-service';
 import Loading from '../components/Loading';
 
+// REDUX
+import { connect } from 'react-redux';
+import { getUser, setUser } from '../actions/authActions';
+
+
 export const AuthContext = React.createContext(
   // authStore // default value
 );
@@ -30,22 +35,22 @@ export const withAuth = (Comp) => {
   }
 }
 
-export default class AuthProvider extends Component {
+class AuthProvider extends Component {
   state = {
     isLogged: false,
-    isAdmin:false,
+    isAdmin: false,
     user: {},
-    status: 'loading'
+    status: 'loaded'
   }
 
   setUser = (user) => {
-    if(user.admin){
+    if (user.admin) {
       this.setState({
         isLogged: true,
         isAdmin: true,
         user
       })
-    }else{
+    } else {
       this.setState({
         isLogged: true,
         user,
@@ -92,22 +97,24 @@ export default class AuthProvider extends Component {
   }
 
   componentDidMount() {
+    console.log('cdm authprovider')
     authService.me()
       .then((user) => {
-        if(user.admin){
-          this.setState({
-            isLogged: true,
-            isAdmin: true,
-            user,
-            status: 'loaded'
-          })
-        }else{
-          this.setState({
-            isLogged: true,
-            user,
-            status: 'loaded'
-          })
-        }
+        this.props.setUser(user.data);
+        // if(user.admin){
+        //   this.setState({
+        //     isLogged: true,
+        //     isAdmin: true,
+        //     user,
+        //     status: 'loaded'
+        //   })
+        // }else{
+        //   this.setState({
+        //     isLogged: true,
+        //     user,
+        //     status: 'loaded'
+        //   })
+        // }
       })
       .catch((error) => {
         this.setState({
@@ -142,3 +149,5 @@ export default class AuthProvider extends Component {
     }
   }
 }
+
+export default connect(null, { setUser })(AuthProvider)

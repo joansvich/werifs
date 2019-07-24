@@ -1,15 +1,16 @@
-import { GET_CARS, ADD_CARS } from './types';
-
-export const getCars = () => {
-  return {
-    type: GET_CARS
-  }
-}
+import { ADD_CARS, ADD_NEW_CAR } from './types';
 
 export const addCars = (cars) => {
   return {
     type: ADD_CARS,
     payload: cars
+  }
+}
+
+export const addNewCar = (car) => {
+  return {
+    type: ADD_NEW_CAR,
+    payload: car
   }
 }
 
