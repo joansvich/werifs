@@ -3,11 +3,6 @@ import carsService from '../lib/cars-service';
 import './createcars.css'
 import Button from '../components/Button';
 
-//REDUX
-import { connect } from 'react-redux';
-import { addNewCar } from '../actions/carsActions';
-
-
 class CreateCars extends Component {
   state = {
     name: "",
@@ -23,12 +18,13 @@ class CreateCars extends Component {
     price10: ""
   }
 
-  handleFormSubmit = async (event) => {
+  handleFormSubmit = (event) => {
     event.preventDefault();
-    const { name, power, retailPrice, velocity, torque, contamination, drivetrain, imageUrl, price1, price5, price10 } = this.state;
-    const carCreated = await carsService.create({ name, power, retailPrice, velocity, torque, contamination, drivetrain, imageUrl, price1, price5, price10 })
-    this.props.addNewCar(carCreated);
-    this.props.history.push('/')
+    const { name, power, retailPrice, velocity, torque, contamination, drivetrain, imageUrl, price1, price5, price10 } = this.state
+
+    carsService.create({ name, power, retailPrice, velocity, torque, contamination, drivetrain, imageUrl, price1, price5, price10 })
+      .then((carCreated) => this.props.history.push('/'))
+      .catch()
   }
 
   handleChange = (event) => {
@@ -102,10 +98,10 @@ class CreateCars extends Component {
           type="normal"
           text="Crear coche"
         />
+        {/* <button type="submit" className="handleEdit" >Crear coche</button> */}
       </form >
     )
   }
 }
 
-
-export default connect(null, { addNewCar })(CreateCars);
+export default CreateCars;

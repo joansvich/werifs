@@ -2,6 +2,7 @@ import { UPDATE_USER, LOGOUT, SET_USER, LOGIN } from './types';
 import authService from '../lib/auth-service';
 
 
+
 // export const setUser = async () => {
 //   const user = await authService.me()
 //   return {
@@ -50,6 +51,7 @@ export const login = (user) => {
   return dispatch => {
     return authService.login(user)
       .then(user => {
+        console.log(user);
         dispatch({
           type: LOGIN,
           payload: user

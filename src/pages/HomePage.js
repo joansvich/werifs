@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './homepage.css'
 import carsService from '../lib/cars-service';
-import authService from '../lib/auth-service';
 import CardCar from '../components/CarCard';
 import Loading from '../components/Loading';
 
@@ -9,15 +8,23 @@ import Loading from '../components/Loading';
 import { connect } from 'react-redux';
 import { addCars } from '../actions/carsActions';
 
+
 class HomePage extends Component {
+
+  state = {
+    isLoading: true
+  }
 
   async componentDidMount() {
     const carList = await carsService.list()
     this.props.addCars(carList)
+    this.setState({
+      isLoading: false
+    })
   }
 
   renderCarList() {
-    const { cars } = this.props;
+    const cars = this.props.cars;
     return cars.map((car, id) => {
       return <CardCar
         key={`id-${id}`}
@@ -65,7 +72,7 @@ class HomePage extends Component {
           <span className="section-line"></span>
           <h1 className="section-text-header">COCHES DISPONIBLES</h1>
           <div className="list-cars">
-            {!this.props.cars ? <><Loading /></> : this.renderCarList()}
+            {this.state.isLoading ? <><Loading /></> : this.renderCarList()}
           </div>
         </section>
       </div >

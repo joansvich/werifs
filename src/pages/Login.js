@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import './login.css';
-// import { withAuth } from '../providers/AuthProvider';
+import { withAuth } from '../providers/AuthProvider';
 import { withRouter, Link } from "react-router-dom";
 import { compose } from 'recompose';
 import Button from '../components/Button';
 import { withParticipation } from '../providers/ParticipationProvider';
 import MessageFlash from '../components/MessageFlash';
-
-//REDUX
-import { connect } from 'react-redux';
-import { login } from '../actions/authActions';
 
 
 class Login extends Component {
@@ -20,29 +16,24 @@ class Login extends Component {
     showError: false
   }
 
-  handleFormSubmit = async (event) => {
+  handleFormSubmit = (event) => {
     event.preventDefault();
     const { username, password } = this.state
-    const user = { username, password };
-    this.props.login(user)
-    // const user = await authService.login({ username, password })
-    if (user) {
-      this.props.history.push("/");
-    }
-    // .then((error) => {
-    //   if (error) {
-    //     this.setState({
-    //       error: error.data.code,
-    //       showError: true
-    //     })
-    //     this.timeout();
-    //   } else {
-    //     this.props.getParticipation()
-    //       .then(() => {
-    //         this.props.history.push("/");
-    //       })
-    //   }
-    // })
+    this.props.login({ username, password })
+      .then((error) => {
+        if (error) {
+          this.setState({
+            error: error.data.code,
+            showError: true
+          })
+          this.timeout();
+        } else {
+          this.props.getParticipation()
+            .then(() => {
+              this.props.history.push("/");
+            })
+        }
+      })
   }
 
   componentWillUnmount() {
@@ -98,6 +89,4 @@ class Login extends Component {
   }
 }
 
-export default connect(null, { login })(Login)
-
-// export default compose(withAuth, withRouter, withParticipation)(Login);
+export default compose(withAuth, withRouter, withParticipation)(Login);

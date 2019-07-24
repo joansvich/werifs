@@ -1,17 +1,15 @@
 import React, { Component } from 'react'
+import { withAuth } from '../providers/AuthProvider';
 import './private.css';
 import Loading from '../components/Loading';
 import Button from '../components/Button';
 import { withParticipation } from '../providers/ParticipationProvider';
+import { compose } from 'recompose';
 import firebase from 'firebase/app';
 import 'firebase/storage';
 import FileUploader from 'react-firebase-file-uploader';
 import CustomUploadButton from 'react-firebase-file-uploader/lib/CustomUploadButton';
 import CardParticipation from '../components/CardParticipation';
-
-//REDUX
-import { connect } from 'react-redux';
-import { updateUser, logout, setUser } from '../actions/authActions';
 
 const config = {
   apiKey: "AIzaSyADazKB_Er76uObR6OP6I98OUOlpJqyYPI",
@@ -40,7 +38,6 @@ class Private extends Component {
 
 
   componentDidMount() {
-    console.log('cdm private');
     const { user } = this.props;
 
     this.setState({
@@ -52,18 +49,6 @@ class Private extends Component {
       isLoading: false,
     })
   }
-
-  componentWillReceiveProps(nextProps, nextState) {
-    const { username, adress, phone, email, imageUrl } = nextProps.user;
-    this.setState({
-      username,
-      adress,
-      phone,
-      email,
-      imageUrl
-    })
-  }
-
   /* Firebase image upload */
 
   handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
@@ -86,7 +71,6 @@ class Private extends Component {
   handleLogout = () => {
     this.props.resetParticipationState();
     this.props.logout();
-    this.props.history.push('/')
   }
 
   handleFormSubmit = (event) => {
@@ -97,7 +81,7 @@ class Private extends Component {
     const phone = this.state.phone;
     const email = this.state.email;
     const imageUrl = this.state.imageUrl;
-    this.props.updateUser({ username, password, adress, phone, email, imageUrl })
+    this.props.update({ username, password, adress, phone, email, imageUrl })
       .catch(error => console.log(error))
     this.setState({
       showButtonEdit: false
@@ -128,36 +112,34 @@ class Private extends Component {
 
   render() {
     const { user } = this.props
-    const { username, adress, phone, email, imageUrl } = this.props.user;
-    console.log(user);
-    const { isUploading } = this.state;
+    const { isLoading, isUploading } = this.state;
     return (<>
       <div className="container-title">
         <span className="title-line"></span>
         <h1 className="title-text-header">Bienvenido de nuevo {user.username}</h1>
       </div>
       <div className="profile container">
-        {!user && <Loading />}
-        {user && <>
+        {isLoading && <Loading />}
+        {!isLoading && <>
           <form className="form-profile" onSubmit={this.handleFormSubmit}>
             <div className="profile-details">
               <div className="profile-details-box">
                 <div className="profile-wrapper">
                   <h2>Detalles del perfil</h2>
                   <div className="component-input">
-                    <input className="component-input--input" type="text" name="username" defaultValue={this.state.username} onChange={this.handleChange} />
+                    <input className="component-input--input" type="text" name="username" value={this.state.username} onChange={this.handleChange} />
                     <label className="label-component-input">* Nombre completo</label>
                   </div>
                   <div className="component-input">
-                    <input className="component-input--input" type="text" name="adress" defaultValue={this.state.adress} onChange={this.handleChange} />
+                    <input className="component-input--input" type="text" name="adress" value={this.state.adress} onChange={this.handleChange} />
                     <label className="label-component-input">* Dirección</label>
                   </div>
                   <div className="component-input">
-                    <input className="component-input--input" type="text" name="phone" defaultValue={this.state.phone} onChange={this.handleChange} />
+                    <input className="component-input--input" type="text" name="phone" value={this.state.phone} onChange={this.handleChange} />
                     <label className="label-component-input">* Teléfono</label>
                   </div>
                   <div className="component-input">
-                    <input className="component-input--input" type="text" name="email" defaultValue={this.state.email} onChange={this.handleChange} />
+                    <input className="component-input--input" type="text" name="email" value={this.state.email} onChange={this.handleChange} />
                     <label className="label-component-input">* Email</label>
                   </div>
                 </div>
@@ -216,8 +198,4 @@ class Private extends Component {
   }
 }
 
-const mapStateWithProps = state => ({
-  user: state.user.user
-})
-
-export default connect(mapStateWithProps, { updateUser, logout, setUser })(withParticipation(Private));
+export default compose(withAuth, withParticipation)(Private);

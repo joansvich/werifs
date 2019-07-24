@@ -24,10 +24,14 @@ import store from './store'
 
 class App extends Component {
 
+  state = {
+    listCars: [],
+  }
+
   render() {
     return (
       <Provider store={store}>
-        {/* <AuthProvider> */}
+        <AuthProvider>
           <ParticipationProvider>
             <StripeProvider exact apiKey="pk_test_bCVmuIR36FGdiCbTo1dxtji400jIZtcgOB">
               <Elements>
@@ -50,11 +54,10 @@ class App extends Component {
               </Elements>
             </StripeProvider>
           </ParticipationProvider>
-        {/* </AuthProvider> */}
+        </AuthProvider>
       </Provider>
     )
   }
 }
-
 
 export default App;
