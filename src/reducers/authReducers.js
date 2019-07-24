@@ -16,7 +16,8 @@ export default function (state = initialState, action) {
     case LOGIN:
       return {
         ...state,
-        user: action.payload
+        user: action.payload,
+        isLogin: true
       }
     case SET_USER:
       return {
@@ -26,7 +27,8 @@ export default function (state = initialState, action) {
     case LOGOUT:
       return {
         ...state,
-        user: []
+        user: [],
+        isLogin: false
       }
     default: return state
   }
