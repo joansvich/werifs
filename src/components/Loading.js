@@ -5,9 +5,9 @@ class Loading extends Component {
 
   render() {
     const override = {
-    display: 'block',
-    margin: '0 auto',
-    padding: '50px'
+      display: 'block',
+      margin: '0 auto',
+      padding: '50px'
     };
     return (
       <>
