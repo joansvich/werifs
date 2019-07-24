@@ -1,19 +1,36 @@
-import { UPDATE_USER, LOGOUT, SET_USER, LOGIN } from './types';
-import authService from '../lib/auth-service';
+import { UPDATE_USER, LOGOUT, SIGNUP, LOGIN, GET_ME } from './types';
+import axios from 'axios';
+
+const auth = axios.create({
+  baseURL: process.env.REACT_APP_BACKEND_URL,
+  withCredentials: true // only beacause we want to share cookies with the backend server otherwise set it to false
+})
 
 
+export function getMe() {
+  return (dispatch, getState) => {
+    auth.get('/auth/me')
+      .then((response) => {
+        dispatch({ type: GET_ME, payload: response.data })
+      })
+  }
+}
 
-// export const setUser = async () => {
-//   const user = await authService.me()
-//   return {
-//     type: SET_USER,
-//     payload: user
-//   }
-// }
+export const login = (user) => {
+  return dispatch => {
+    auth.post('/auth/login', user)
+      .then(user => {
+        dispatch({
+          type: LOGIN,
+          payload: user
+        });
+      });
+  };
+};
 
 export const logout = () => {
   return dispatch => {
-    return authService.logout()
+    auth.post('/auth/logout', {})
       .then(() => {
         dispatch({
           type: LOGOUT
@@ -22,22 +39,9 @@ export const logout = () => {
   };
 }
 
-
-export const setUser = () => {
-  return dispatch => {
-    return authService.me()
-      .then(user => {
-        dispatch({
-          type: SET_USER,
-          payload: user.data
-        });
-      });
-  };
-};
-
 export const updateUser = (user) => {
   return dispatch => {
-    return authService.update(user)
+    auth.put('/profile/', user)
       .then(user => {
         dispatch({
           type: UPDATE_USER,
@@ -47,15 +51,3 @@ export const updateUser = (user) => {
   };
 };
 
-export const login = (user) => {
-  return dispatch => {
-    return authService.login(user)
-      .then(user => {
-        console.log(user);
-        dispatch({
-          type: LOGIN,
-          payload: user
-        });
-      });
-  };
-};

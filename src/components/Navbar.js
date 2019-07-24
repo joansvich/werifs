@@ -6,41 +6,51 @@ import './navbar.css'
 import Cart from '../components/Cart';
 import { withParticipation } from '../providers/ParticipationProvider';
 
+//REDUX
+import { connect } from 'react-redux';
+import { getMe } from '../actions/authActions';
+
+
 class Navbar extends Component {
 
   handleClick = () => {
     this.props.changeShowCard();
   }
 
-  componentDidMount(){
-    if(this.props.isLogged){
-      this.props.getParticipation();
-    }
+  async componentDidMount(){
+    await this.props.getMe()
+    console.log('CDM Navbar');
+    // if(this.props.isLogged){
+    //   this.props.getParticipation();
+    // }
   }
   render() {
-    const { isLogged, user, isAdmin } = this.props;
-    const {amount} = this.props.participationState;
+    // const { isLogged, user, isAdmin } = this.props;
+    const {user} = this.props
+    console.log('Render Navbar');
+    console.log(user);
+    // const {amount} = this.props.participationState;
     let countPart = 0;
     let showBullet = false;
-    if (this.props.participationState.listParticipation) {
-      countPart = this.props.participationState.listParticipation.length;
-      if (countPart > 0) {
-        showBullet = true;
-      }
-    }
+    // if (this.props.participationState.listParticipation) {
+    //   countPart = this.props.participationState.listParticipation.length;
+    //   if (countPart > 0) {
+    //     showBullet = true;
+    //   }
+    // }
     return <>
       <nav className="navbar flex navbar-height">
           <div className="navbar-start">
             <Link className="link" to="/"><img src="./images/logo-werifs.png" alt="foto perfil" className="navbar-img-profile" /></Link>
           </div>
-          {isLogged && <>
+          {user.username && <>
             <div className="navbar-end">
             <div className="navbar-container--nobg">
-            {isAdmin && <Link id="link--img" className="link" to='/create'><img className="navbar-profile-img" src="./images/add-car.png" alt="" /></Link>}
+            {user.admin && <Link id="link--img" className="link" to='/create'><img className="navbar-profile-img" src="./images/add-car.png" alt="" /></Link>}
             <Link id="link--img" className="link" to='/private'><img className="navbar-profile-img" src={user.imageUrl} alt="" /></Link>
             </div>
             <div className="navbar-container">
-              <p>{amount}€</p>
+              {/* <p>{amount}€</p> */}
               <div className="shopping-cart">
                 {showBullet && <div className="cart-bullet">{countPart}</div>}
                 <i onClick={this.handleClick} className="fas fa-shopping-cart"></i>
@@ -49,7 +59,7 @@ class Navbar extends Component {
             <Cart />
           </div>
           </>}
-          {!isLogged && <>
+          {user.length===0 && <>
             <div className="navbar-end">
             <Link to="/login"><svg className="icon-login" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512">
 <g>
@@ -102,5 +112,7 @@ class Navbar extends Component {
 
   }
 }
-
-export default compose(withRouter, withAuth, withParticipation)(Navbar);
+const mapStateToProps = state => ({
+  user: state.user.user
+})
+export default connect(mapStateToProps, { getMe })(Navbar);

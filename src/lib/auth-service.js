@@ -17,14 +17,14 @@ class AuthService {
   update(user) {
     const { username, password, adress, phone, email, imageUrl } = user;
     return this.auth.put('/profile/', { username, password, adress, phone, email, imageUrl })
-      .then(({data})=> data);
+      .then(({ data }) => data);
   }
 
   login(user) {
     const { username, password } = user;
-    return this.auth.post('/auth/login', {username, password})
+    return this.auth.post('/auth/login', { username, password })
       .then(({ data }) => data);
-  } 
+  }
 
   logout() {
     return this.auth.post('/auth/logout', {})
@@ -33,7 +33,7 @@ class AuthService {
 
   me(user) {
     return this.auth.get('/auth/me')
-    .then(response => response.data)
+      .then(response => response.data)
   }
 }
 

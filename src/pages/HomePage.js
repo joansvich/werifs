@@ -7,6 +7,7 @@ import Loading from '../components/Loading';
 //REDUX
 import { connect } from 'react-redux';
 import { addCars } from '../actions/carsActions';
+import { getMe } from '../actions/authActions';
 
 
 class HomePage extends Component {
@@ -34,6 +35,7 @@ class HomePage extends Component {
   }
 
   render() {
+    console.log(this.props.list)
     return (
       <div className="homepage">
         <section className="container--wide">
@@ -81,7 +83,8 @@ class HomePage extends Component {
 }
 
 const mapStateToProps = state => ({
-  cars: state.cars.cars
+  cars: state.cars.cars,
+  list: state
 })
 
-export default connect(mapStateToProps, { addCars })(HomePage);
+export default connect(mapStateToProps, { addCars, getMe })(HomePage);
