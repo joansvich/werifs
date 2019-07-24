@@ -22,8 +22,7 @@ export default function (state = initialState, action) {
     case LOGIN:
       return {
         ...state,
-        user: action.payload,
-        isLogin: true
+        user: action.payload
       }
     case SET_USER:
       return {
@@ -33,8 +32,7 @@ export default function (state = initialState, action) {
     case LOGOUT:
       return {
         ...state,
-        user: [],
-        isLogin: false
+        user: []
       }
     default: return state
   }

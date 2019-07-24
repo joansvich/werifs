@@ -7,6 +7,9 @@ import Button from '../components/Button';
 import { withParticipation } from '../providers/ParticipationProvider';
 import MessageFlash from '../components/MessageFlash';
 
+//REDUX
+import { connect } from 'react-redux';
+import { getMe, login } from '../actions/authActions';
 
 class Login extends Component {
   state = {
@@ -20,19 +23,21 @@ class Login extends Component {
     event.preventDefault();
     const { username, password } = this.state
     this.props.login({ username, password })
-      .then((error) => {
-        if (error) {
-          this.setState({
-            error: error.data.code,
-            showError: true
-          })
-          this.timeout();
-        } else {
-          this.props.getParticipation()
-            .then(() => {
-              this.props.history.push("/");
-            })
-        }
+      .then(() => {
+        console.log('else')
+        this.props.history.push('/');
+        // this.props.getParticipation()
+        //   .then(() => {
+        //     this.props.history.push("/");
+        //   })
+
+      })
+      .catch((error) => {
+        this.setState({
+          error: 'Los datos no son correctos',
+          showError: true
+        })
+        this.timeout();
       })
   }
 
@@ -89,4 +94,9 @@ class Login extends Component {
   }
 }
 
-export default compose(withAuth, withRouter, withParticipation)(Login);
+const mapStateToProps = state => ({
+  user: state.user.user
+})
+export default connect(mapStateToProps, { getMe, login })(Login);
+
+// export default compose(withAuth, withRouter, withParticipation)(Login);

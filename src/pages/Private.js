@@ -11,6 +11,13 @@ import FileUploader from 'react-firebase-file-uploader';
 import CustomUploadButton from 'react-firebase-file-uploader/lib/CustomUploadButton';
 import CardParticipation from '../components/CardParticipation';
 
+
+//REDUX
+import { connect } from 'react-redux';
+import { logout, getMe } from '../actions/authActions';
+import { clearParticipations, getParticipations } from '../actions/participationActions';
+
+
 const config = {
   apiKey: "AIzaSyADazKB_Er76uObR6OP6I98OUOlpJqyYPI",
   authDomain: "we-rifs.firebaseapp.com",
@@ -37,7 +44,9 @@ class Private extends Component {
   }
 
 
-  componentDidMount() {
+  async componentDidMount() {
+    await this.props.getMe()
+    await this.props.getParticipations()
     const { user } = this.props;
 
     this.setState({
@@ -69,8 +78,9 @@ class Private extends Component {
 
 
   handleLogout = () => {
-    this.props.resetParticipationState();
+    // this.props.resetParticipationState();
     this.props.logout();
+    this.props.clearParticipations();
   }
 
   handleFormSubmit = (event) => {
@@ -101,22 +111,25 @@ class Private extends Component {
   }
 
   renderListPaid = () => {
-    const { listPaid } = this.props.participationState;
-    return listPaid.map((participation, id) => {
-      return <CardParticipation
-        participation={participation}
-        key={`id-${id}`}
-      />
+    const { participations } = this.props;
+    console.log(this.props.participations);
+    return participations.map((participation, id) => {
+      if (participation.paid) {
+        return <CardParticipation
+          participation={participation}
+          key={`id-${id}`}
+        />
+      }
     })
   }
 
   render() {
-    const { user } = this.props
+    const { username } = this.state
     const { isLoading, isUploading } = this.state;
     return (<>
       <div className="container-title">
         <span className="title-line"></span>
-        <h1 className="title-text-header">Bienvenido de nuevo {user.username}</h1>
+        <h1 className="title-text-header">Bienvenido de nuevo {username}</h1>
       </div>
       <div className="profile container">
         {isLoading && <Loading />}
@@ -198,4 +211,9 @@ class Private extends Component {
   }
 }
 
-export default compose(withAuth, withParticipation)(Private);
+const mapStateWithProps = state => ({
+  user: state.user.user,
+  participations: state.participations.participations
+})
+
+export default connect(mapStateWithProps, { logout, getMe, clearParticipations,getParticipations })(Private)

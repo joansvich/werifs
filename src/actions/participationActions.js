@@ -1,9 +1,27 @@
-import { GET_PARTICIPATIONS, ADD_PARTICIPATION } from './types';
+import { GET_PARTICIPATIONS, ADD_PARTICIPATION, CLEAR_PARTICIPATION } from './types';
+import axios from 'axios';
 
-export const getParticipations = (cars) => {
+
+const participation = axios.create({
+  baseURL: process.env.REACT_APP_BACKEND_URL,
+  withCredentials: true // only beacause we want to share cookies with the backend server otherwise set it to false
+})
+
+export const getParticipations = () => {
+  return (dispatch, getState) => {
+    return participation.get('/participation/')
+      .then((response) => {
+        dispatch({
+          type: GET_PARTICIPATIONS,
+          payload: response.data
+        })
+      })
+  }
+}
+
+export const clearParticipations = () => {
   return {
-    type: GET_PARTICIPATIONS,
-    payload: cars
+    type: CLEAR_PARTICIPATION,
   }
 }
 

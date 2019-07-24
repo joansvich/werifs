@@ -7,9 +7,9 @@ const auth = axios.create({
 })
 
 
-export function getMe() {
+export const getMe = () => {
   return (dispatch, getState) => {
-    auth.get('/auth/me')
+    return auth.get('/auth/me')
       .then((response) => {
         dispatch({ type: GET_ME, payload: response.data })
       })
@@ -18,19 +18,20 @@ export function getMe() {
 
 export const login = (user) => {
   return dispatch => {
-    auth.post('/auth/login', user)
+    return auth.post('/auth/login', user)
       .then(user => {
+        console.log(user)
         dispatch({
           type: LOGIN,
-          payload: user
+          payload: user.data
         });
-      });
+      })
   };
 };
 
 export const logout = () => {
   return dispatch => {
-    auth.post('/auth/logout', {})
+    return auth.post('/auth/logout', {})
       .then(() => {
         dispatch({
           type: LOGOUT
@@ -39,9 +40,9 @@ export const logout = () => {
   };
 }
 
-export const updateUser = (user) => {
+export const update = (user) => {
   return dispatch => {
-    auth.put('/profile/', user)
+    return auth.put('/profile/', user)
       .then(user => {
         dispatch({
           type: UPDATE_USER,

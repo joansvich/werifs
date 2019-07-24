@@ -1,12 +1,4 @@
-// export const SHOW_CITAS = "SHOW_CITAS";
-// export const ADD_CITAS = "ADD_CITAS";
-// export const DELETE_CITAS = "DELETE_CITAS";
-
-//Validar formulario
-
-// export const OK_FORM = 'OK_FORM'
-// export const SHOW_ERROR = "SHOW_ERROR";
-
+// Cars
 export const GET_CARS = 'GET_CARS';
 export const ADD_CARS = 'ADD_CARS';
 
@@ -17,3 +9,8 @@ export const SET_USER = 'SET_USER';
 export const LOGIN = 'LOGIN';
 export const GET_ME = 'GET_ME';
 
+// Participations
+
+export const GET_PARTICIPATIONS = 'GET_PARTICIPATIONS';
+export const ADD_PARTICIPATION = 'ADD_PARTICIPATION';
+export const CLEAR_PARTICIPATION = 'CLEAR_PARTICIPATION';

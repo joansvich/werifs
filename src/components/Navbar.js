@@ -9,6 +9,7 @@ import { withParticipation } from '../providers/ParticipationProvider';
 //REDUX
 import { connect } from 'react-redux';
 import { getMe } from '../actions/authActions';
+import { getParticipations } from '../actions/participationActions';
 
 
 class Navbar extends Component {
@@ -19,7 +20,9 @@ class Navbar extends Component {
 
   async componentDidMount(){
     await this.props.getMe()
-    console.log('CDM Navbar');
+    if(this.props.user.username){
+      await this.props.getParticipations()
+    }
     // if(this.props.isLogged){
     //   this.props.getParticipation();
     // }
@@ -27,8 +30,6 @@ class Navbar extends Component {
   render() {
     // const { isLogged, user, isAdmin } = this.props;
     const {user} = this.props
-    console.log('Render Navbar');
-    console.log(user);
     // const {amount} = this.props.participationState;
     let countPart = 0;
     let showBullet = false;
@@ -113,6 +114,7 @@ class Navbar extends Component {
   }
 }
 const mapStateToProps = state => ({
-  user: state.user.user
+  user: state.user.user,
+  participations: state.participations.participations
 })
-export default connect(mapStateToProps, { getMe })(Navbar);
+export default connect(mapStateToProps, { getMe, getParticipations })(Navbar);

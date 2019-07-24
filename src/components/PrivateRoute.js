@@ -2,12 +2,16 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { withAuth } from '../providers/AuthProvider';
 
-const PrivateRoute = ({ component: Component, isLogged, ...rest }) => {
+//REDUX
+import { connect } from 'react-redux';
+import { getMe } from '../actions/authActions';
+
+const PrivateRoute = ({ component: Component, user, ...rest }) => {
   return (
-    <Route 
+    <Route
       {...rest}
       render={props => {
-        if (isLogged) {
+        if (user.username) {
           return <Component {...props} />
         } else {
           return <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
@@ -17,6 +21,9 @@ const PrivateRoute = ({ component: Component, isLogged, ...rest }) => {
   )
 }
 
+const mapStateWithProps = state => ({
+  user: state.user.user
+})
 
-
-export default withAuth(PrivateRoute);
+export default connect(mapStateWithProps, {})(PrivateRoute)
+// export default withAuth(PrivateRoute);
