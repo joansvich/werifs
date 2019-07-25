@@ -4,7 +4,6 @@ import { withAuth } from '../providers/AuthProvider';
 
 //REDUX
 import { connect } from 'react-redux';
-import { getMe } from '../actions/authActions';
 
 const PrivateRoute = ({ component: Component, user, ...rest }) => {
   return (
@@ -21,9 +20,8 @@ const PrivateRoute = ({ component: Component, user, ...rest }) => {
   )
 }
 
-const mapStateWithProps = state => ({
+const mapStateToProps = state => ({
   user: state.user.user
 })
 
-export default connect(mapStateWithProps, {})(PrivateRoute)
-// export default withAuth(PrivateRoute);
+export default connect(mapStateToProps, {})(PrivateRoute)

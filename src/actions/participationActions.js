@@ -1,4 +1,4 @@
-import { GET_PARTICIPATIONS, ADD_PARTICIPATION, CLEAR_PARTICIPATION } from './types';
+import { GET_PARTICIPATIONS, ADD_PARTICIPATION, SHOW_CARD, CLEAR_PARTICIPATION } from './types';
 import axios from 'axios';
 
 
@@ -29,5 +29,11 @@ export const addParticipation = (newParticipation) => {
   return {
     type: ADD_PARTICIPATION,
     payload: newParticipation
+  }
+}
+
+export const changeShowCard = () => {
+  return {
+    type: SHOW_CARD
   }
 }

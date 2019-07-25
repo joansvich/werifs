@@ -9,7 +9,7 @@ import { withParticipation } from '../providers/ParticipationProvider';
 //REDUX
 import { connect } from 'react-redux';
 import { getMe } from '../actions/authActions';
-import { getParticipations } from '../actions/participationActions';
+import { getParticipations, changeShowCard } from '../actions/participationActions';
 
 
 class Navbar extends Component {
@@ -117,4 +117,4 @@ const mapStateToProps = state => ({
   user: state.user.user,
   participations: state.participations.participations
 })
-export default connect(mapStateToProps, { getMe, getParticipations })(Navbar);
+export default connect(mapStateToProps, { getMe, getParticipations, changeShowCard })(Navbar);

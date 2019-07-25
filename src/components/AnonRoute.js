@@ -20,8 +20,8 @@ const AnonRoute = ({ component: Component, user, ...rest }) => {
   )
 }
 
-const mapStateWithProps = state => ({
+const mapStateToProps = state => ({
   user: state.user.user
 })
 
-export default connect(mapStateWithProps, null)(AnonRoute)
+export default connect(mapStateToProps, null)(AnonRoute)

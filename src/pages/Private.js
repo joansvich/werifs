@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
-import { withAuth } from '../providers/AuthProvider';
 import './private.css';
 import Loading from '../components/Loading';
 import Button from '../components/Button';
-import { withParticipation } from '../providers/ParticipationProvider';
-import { compose } from 'recompose';
 import firebase from 'firebase/app';
 import 'firebase/storage';
 import FileUploader from 'react-firebase-file-uploader';
@@ -78,7 +75,6 @@ class Private extends Component {
 
 
   handleLogout = () => {
-    // this.props.resetParticipationState();
     this.props.logout();
     this.props.clearParticipations();
   }
@@ -211,9 +207,9 @@ class Private extends Component {
   }
 }
 
-const mapStateWithProps = state => ({
+const mapStateToProps = state => ({
   user: state.user.user,
   participations: state.participations.participations
 })
 
-export default connect(mapStateWithProps, { logout, getMe, clearParticipations,getParticipations })(Private)
+export default connect(mapStateToProps, { logout, getMe, clearParticipations,getParticipations })(Private)

@@ -1,13 +1,15 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { withAuth } from '../providers/AuthProvider';
 
-const AdminRoute = ({ component: Component, isLogged, isAdmin, ...rest }) => {
+//REDUX
+import { connect } from 'react-redux';
+
+const AdminRoute = ({ component: Component, user, isAdmin, ...rest }) => {
   return (
     <Route 
       {...rest}
       render={props => {
-        if (isLogged && isAdmin) {
+        if (user.admin) {
           return <Component {...props} />
         } else {
           return <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
@@ -17,6 +19,8 @@ const AdminRoute = ({ component: Component, isLogged, isAdmin, ...rest }) => {
   )
 }
 
+const mapStateToProps = state => ({
+  user: state.user.user
+})
 
-
-export default withAuth(AdminRoute);
+export default connect(mapStateToProps,null)(AdminRoute)

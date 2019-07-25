@@ -1,9 +1,11 @@
-import { GET_PARTICIPATIONS, ADD_PARTICIPATION, DELETE_PARTICIPATION, CLEAR_PARTICIPATION } from '../actions/types';
+import { GET_PARTICIPATIONS, ADD_PARTICIPATION, SHOW_CARD, DELETE_PARTICIPATION, CLEAR_PARTICIPATION } from '../actions/types';
+
 
 // state inicial, cada reducer debe de tener su propio state
 
 const initialState = {
-  participations: []
+  participations: [],
+  showCard: false
 }
 
 export default function (state = initialState, action) {
@@ -23,6 +25,21 @@ export default function (state = initialState, action) {
         ...state,
         participations: []
       }
+    case SHOW_CARD:
+      console.log('show')
+      if (initialState.showCard===true) {
+        console.log('true')
+        return {
+          ...state,
+          showCard: false
+        }
+      } else {
+        return {
+          ...state,
+          showCard: true
+        }
+      }
+
     // case DELETE_PARTICIPATION:
     //   return {
     //     ...state,
