@@ -7,6 +7,12 @@ import { withAuth } from '../providers/AuthProvider';
 import { compose } from 'recompose';
 import MessageFlash from './MessageFlash';
 
+//REDUX
+import { connect } from 'react-redux';
+import { addCars } from '../actions/carsActions';
+import { getMe } from '../actions/authActions';
+
+
 class ButtonParticipation extends Component {
 
   state = {
@@ -18,7 +24,7 @@ class ButtonParticipation extends Component {
 
   handleClickAdd = (e) => {
     e.preventDefault();
-    if (this.props.isLogged) {
+    if (this.props.user.username) {
       const newParticipation = {
         idCar: this.props.idCar,
         numParticipations: this.state.numParticipations
@@ -62,7 +68,7 @@ class ButtonParticipation extends Component {
       })
       if (cent) {
         return (
-          <Button disabled={ cent } text="Añadido!" type="done" onClick={this.handleClickAdd} />
+          <Button disabled={cent} text="Añadido!" type="done" onClick={this.handleClickAdd} />
         )
       } else {
         return (
@@ -86,4 +92,11 @@ class ButtonParticipation extends Component {
   }
 }
 
-export default compose(withAuth, withParticipation)(ButtonParticipation);
+const mapStateToProps = state => ({
+  cars: state.cars.cars,
+  user: state.user.user,
+  participations: state.participations.participations
+})
+
+export default connect(mapStateToProps, {})(ButtonParticipation)
+// export default compose(withAuth, withParticipation)(ButtonParticipation);

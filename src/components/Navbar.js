@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import { withAuth } from '../providers/AuthProvider';
-import { compose } from 'recompose';
+import { Link } from 'react-router-dom';
 import './navbar.css'
 import Cart from '../components/Cart';
-import { withParticipation } from '../providers/ParticipationProvider';
 
 //REDUX
 import { connect } from 'react-redux';
@@ -15,7 +12,7 @@ import { getParticipations, changeShowCard } from '../actions/participationActio
 class Navbar extends Component {
 
   handleClick = () => {
-    this.props.changeShowCard();
+    this.props.changeShowCard(this.props.showCard);
   }
 
   async componentDidMount(){
@@ -23,16 +20,17 @@ class Navbar extends Component {
     if(this.props.user.username){
       await this.props.getParticipations()
     }
-    // if(this.props.isLogged){
-    //   this.props.getParticipation();
-    // }
   }
   render() {
-    // const { isLogged, user, isAdmin } = this.props;
     const {user} = this.props
-    // const {amount} = this.props.participationState;
+    const {amount} = this.props
     let countPart = 0;
     let showBullet = false;
+    if(amount>0){
+      showBullet = true;
+    }else{
+      showBullet = false;
+    }
     // if (this.props.participationState.listParticipation) {
     //   countPart = this.props.participationState.listParticipation.length;
     //   if (countPart > 0) {
@@ -51,7 +49,7 @@ class Navbar extends Component {
             <Link id="link--img" className="link" to='/private'><img className="navbar-profile-img" src={user.imageUrl} alt="" /></Link>
             </div>
             <div className="navbar-container">
-              {/* <p>{amount}€</p> */}
+              <p>{amount}€</p>
               <div className="shopping-cart">
                 {showBullet && <div className="cart-bullet">{countPart}</div>}
                 <i onClick={this.handleClick} className="fas fa-shopping-cart"></i>
@@ -115,6 +113,8 @@ class Navbar extends Component {
 }
 const mapStateToProps = state => ({
   user: state.user.user,
-  participations: state.participations.participations
+  participations: state.participations.participations,
+  showCard: state.participations.showCard,
+  amount: state.participations.amountParticipations
 })
 export default connect(mapStateToProps, { getMe, getParticipations, changeShowCard })(Navbar);

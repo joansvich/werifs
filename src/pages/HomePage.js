@@ -83,8 +83,7 @@ class HomePage extends Component {
 }
 
 const mapStateToProps = state => ({
-  cars: state.cars.cars,
-  list: state
+  cars: state.cars.cars
 })
 
 export default connect(mapStateToProps, { addCars, getMe })(HomePage);

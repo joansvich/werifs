@@ -4,16 +4,24 @@ import { GET_PARTICIPATIONS, ADD_PARTICIPATION, SHOW_CARD, DELETE_PARTICIPATION,
 // state inicial, cada reducer debe de tener su propio state
 
 const initialState = {
+  showCard: false,
   participations: [],
-  showCard: false
+  amountParticipations: 0
 }
 
 export default function (state = initialState, action) {
   switch (action.type) {
     case GET_PARTICIPATIONS:
+      let amount = 0;
+      action.payload.map((participation) => {
+        if (!participation.paid) {
+          amount = amount + participation.amount
+        }
+      })
       return {
         ...state,
-        participations: action.payload
+        participations: action.payload,
+        amountParticipations: amount
       }
     case ADD_PARTICIPATION:
       return {
@@ -26,9 +34,8 @@ export default function (state = initialState, action) {
         participations: []
       }
     case SHOW_CARD:
-      console.log('show')
-      if (initialState.showCard===true) {
-        console.log('true')
+      console.log(action)
+      if (action.payload) {
         return {
           ...state,
           showCard: false

@@ -32,8 +32,10 @@ export const addParticipation = (newParticipation) => {
   }
 }
 
-export const changeShowCard = () => {
+export const changeShowCard = (stateCard) => {
+  console.log(stateCard)
   return {
-    type: SHOW_CARD
+    type: SHOW_CARD,
+    payload: stateCard
   }
 }
