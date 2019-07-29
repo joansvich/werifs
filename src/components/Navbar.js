@@ -15,12 +15,12 @@ class Navbar extends Component {
     this.props.changeShowCard(this.props.showCard);
   }
 
-  async componentDidMount(){
-    await this.props.getMe()
-    if(this.props.user.username){
-      await this.props.getParticipations()
-    }
-  }
+  // async componentDidMount(){
+  //   await this.props.getMe()
+  //   if(this.props.user.username){
+  //     await this.props.getParticipations()
+  //   }
+  // }
   render() {
     const {user} = this.props
     const {amount} = this.props

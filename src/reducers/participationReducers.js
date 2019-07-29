@@ -6,22 +6,33 @@ import { GET_PARTICIPATIONS, ADD_PARTICIPATION, SHOW_CARD, DELETE_PARTICIPATION,
 const initialState = {
   showCard: false,
   participations: [],
+  participationsNoPaid: [],
+  participationsPaid: [],
   amountParticipations: 0
 }
 
 export default function (state = initialState, action) {
   switch (action.type) {
     case GET_PARTICIPATIONS:
+      // Crear una lista para las pagadas y otra para las pendientes,
+      // así facilito el trabajar con los datos
       let amount = 0;
+      let participationNoPaid = [];
+      let participationPaid = [];
       action.payload.map((participation) => {
         if (!participation.paid) {
-          amount = amount + participation.amount
+          amount = amount + participation.amount;
+          participationNoPaid.push(participation)
+        } else if (participation.paid) {
+          participationPaid.push(participation)
         }
       })
       return {
         ...state,
         participations: action.payload,
-        amountParticipations: amount
+        amountParticipations: amount,
+        participationsPaid: participationPaid,
+        participationsNoPaid: participationNoPaid
       }
     case ADD_PARTICIPATION:
       return {

@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
-import { withParticipation } from '../providers/ParticipationProvider';
 import './buttonparticipation.css'
 import Button from './Button';
 import Loading from './Loading';
-import { withAuth } from '../providers/AuthProvider';
-import { compose } from 'recompose';
 import MessageFlash from './MessageFlash';
 
 //REDUX
 import { connect } from 'react-redux';
-import { addCars } from '../actions/carsActions';
-import { getMe } from '../actions/authActions';
+import { addParticipation } from '../actions/participationActions';
 
 
 class ButtonParticipation extends Component {
@@ -58,10 +54,10 @@ class ButtonParticipation extends Component {
 
   updateButton = () => {
     let cent = false;
-    if (!this.props.participationState.listParticipation) {
+    if (this.props.participationsNoPaid.length === 0) {
       return <Button text="Añadir al carrito" onClick={this.handleClickAdd} />
     } else {
-      this.props.participationState.listParticipation.map((participation) => {
+      this.props.participationsNoPaid.map((participation) => {
         if (participation.idCar._id === this.props.idCar) {
           cent = true
         }
@@ -95,8 +91,10 @@ class ButtonParticipation extends Component {
 const mapStateToProps = state => ({
   cars: state.cars.cars,
   user: state.user.user,
-  participations: state.participations.participations
+  participations: state.participations.participations,
+  participationsNoPaid: state.participations.participationsNoPaid,
+  participationsPaid: state.participations.participationsPaid
 })
 
-export default connect(mapStateToProps, {})(ButtonParticipation)
+export default connect(mapStateToProps, {addParticipation})(ButtonParticipation)
 // export default compose(withAuth, withParticipation)(ButtonParticipation);

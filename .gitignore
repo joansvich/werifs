@@ -16,6 +16,8 @@
 .env.test.local
 .env.production.local
 build.sh
+/Illustrator
+/wireframes
 
 npm-debug.log*
 yarn-debug.log*

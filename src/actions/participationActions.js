@@ -19,6 +19,7 @@ export const getParticipations = () => {
   }
 }
 
+
 export const clearParticipations = () => {
   return {
     type: CLEAR_PARTICIPATION,
@@ -26,9 +27,14 @@ export const clearParticipations = () => {
 }
 
 export const addParticipation = (newParticipation) => {
-  return {
-    type: ADD_PARTICIPATION,
-    payload: newParticipation
+  return (dispatch, getState) => {
+    return participation.post('/participation/create', newParticipation)
+      .then((response) => {
+        dispatch({
+          type: ADD_PARTICIPATION,
+          payload: response.data
+        })
+      })
   }
 }
 

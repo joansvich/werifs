@@ -19,45 +19,51 @@ import Game from './pages/Game';
 import { StripeProvider, Elements } from 'react-stripe-elements';
 
 // Redux
-import { Provider } from 'react-redux';
-import store from './store'
+import { connect } from 'react-redux';
+import { getMe } from './actions/authActions';
+import { getParticipations } from './actions/participationActions';
 
 class App extends Component {
 
-  state = {
-    listCars: [],
+  async componentDidMount() {
+    await this.props.getMe()
+    if (this.props.user.username) {
+      await this.props.getParticipations()
+    }
   }
 
   render() {
     return (
-      <Provider store={store}>
-        <AuthProvider>
-          <ParticipationProvider>
-            <StripeProvider exact apiKey="pk_test_bCVmuIR36FGdiCbTo1dxtji400jIZtcgOB">
-              <Elements>
-                <>
-                  <Navbar />
-                  <div className="body">
-                    <Switch>
-                      <Route exact path="/" component={HomePage} />
-                      <AnonRoute exact path="/signup" component={Signup} />
-                      <AnonRoute exact path="/login" component={Login} />
-                      <PrivateRoute exact path="/private" component={Private} />
-                      <AdminRoute exact path="/create" component={CreateCars} />
-                      <PrivateRoute exact path="/game" component={Game} />
-                      <PrivateRoute exact path="/checkout" component={Checkout} />
-                      <Route path="" component={NotFound} />
-                    </Switch>
-                  </div>
-                  <Footer />
-                </>
-              </Elements>
-            </StripeProvider>
-          </ParticipationProvider>
-        </AuthProvider>
-      </Provider>
+      <AuthProvider>
+        <ParticipationProvider>
+          <StripeProvider exact apiKey="pk_test_bCVmuIR36FGdiCbTo1dxtji400jIZtcgOB">
+            <Elements>
+              <>
+                <Navbar />
+                <div className="body">
+                  <Switch>
+                    <Route exact path="/" component={HomePage} />
+                    <AnonRoute exact path="/signup" component={Signup} />
+                    <AnonRoute exact path="/login" component={Login} />
+                    <PrivateRoute exact path="/private" component={Private} />
+                    <AdminRoute exact path="/create" component={CreateCars} />
+                    <PrivateRoute exact path="/game" component={Game} />
+                    <PrivateRoute exact path="/checkout" component={Checkout} />
+                    <Route path="" component={NotFound} />
+                  </Switch>
+                </div>
+                <Footer />
+              </>
+            </Elements>
+          </StripeProvider>
+        </ParticipationProvider>
+      </AuthProvider>
     )
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  user: state.user.user,
+})
+
+export default connect(mapStateToProps, { getMe, getParticipations })(App);
