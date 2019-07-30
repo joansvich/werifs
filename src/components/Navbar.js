@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './navbar.css'
-import Cart from '../components/Cart';
 
 //REDUX
 import { connect } from 'react-redux';
@@ -15,12 +14,6 @@ class Navbar extends Component {
     this.props.changeShowCard(this.props.showCard);
   }
 
-  // async componentDidMount(){
-  //   await this.props.getMe()
-  //   if(this.props.user.username){
-  //     await this.props.getParticipations()
-  //   }
-  // }
   render() {
     const {user} = this.props
     const {amount} = this.props
@@ -31,14 +24,26 @@ class Navbar extends Component {
     }else{
       showBullet = false;
     }
-    // if (this.props.participationState.listParticipation) {
-    //   countPart = this.props.participationState.listParticipation.length;
-    //   if (countPart > 0) {
-    //     showBullet = true;
-    //   }
-    // }
+
     return <>
-      <nav className="navbar flex navbar-height">
+      <nav className="container navbar">
+        <div>
+          <ul>
+            <Link to="/" className="link logo"><img src="./images/logo.png" alt=""/></Link>
+            <li><Link className="link">Nosotros</Link></li>
+            <li><Link className="link">Cómo se juega</Link></li>
+            <li><Link className="link">Contacto</Link></li>
+          </ul>
+        </div>
+        <div>
+          <Link className="link button button-navbar" to='/login'>Iniciar sesión</Link>
+        </div>
+      </nav>
+
+
+
+
+      {/* <nav className="navbar flex navbar-height">
           <div className="navbar-start">
             <Link className="link" to="/"><img src="./images/logo-werifs.png" alt="foto perfil" className="navbar-img-profile" /></Link>
           </div>
@@ -106,7 +111,7 @@ class Navbar extends Component {
 </svg></Link>
             </div>
           </>}
-      </nav>
+      </nav> */}
     </>
 
   }

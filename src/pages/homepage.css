@@ -1,4 +1,106 @@
-:root {
+/* -------- HEADER SECTION -------- */
+
+.homepage .header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.homepage .header-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%
+}
+
+.header-text {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 20px;
+}
+
+.header-text h1 {
+  font-weight: var(--black);
+  text-transform: uppercase;
+  text-align: left;
+  font-size: 40px;
+  width: 70%;
+  margin: 0;
+  color: var(--primary-text-color);
+}
+
+.header-text img {
+  width: 100%;
+  margin-top: -180px;
+}
+
+.header-text h2 {
+  color: var(--primary-text-color);
+  font-weight: var(--bold);
+  text-align: left;
+  font-size: 20px;
+}
+
+.header-preset {
+  width: 50%;
+}
+
+.header-preset img {
+  width: 1000px;
+  position: absolute;
+  top: -300px;
+  right: -300px;
+}
+
+.header-cta {
+  margin: 20px;
+}
+
+.header-cta a {
+  background-color: #7ED321;
+  padding: 15px 30px;
+  border-radius: var(--radius);
+  text-transform: uppercase;
+  color: white;
+  font-weight: var(--extra-bold);
+  font-size: 20px;
+}
+
+/* -------- PROGRESS SECTION -------- */
+
+.progress {
+  background: url('/images/progress-bg.png');
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.progress h1 {
+  font-weight: var(--black);
+  font-size: 32px;
+  text-transform: uppercase;
+  color: var(--primary-text-color);
+}
+
+.progress p {
+  font-weight: var(--bold);
+  font-size: 18px;
+}
+
+.progress .button-how-it-works{
+  background-color: #3C91F7;
+  padding: 10px 15px;
+  border-radius: var(--radius);
+  color: white;
+  text-transform: uppercase;
+  font-weight: var(--extra-bold);
+  margin: 20px;
+}
+
+/* :root {
   --color-primary: #a5eefb;
   --grey: #555;
   --white: #ffffff;
@@ -44,7 +146,6 @@
   margin: 20px;
   padding: 10px;
   background-color: #ffffff;
-  /* box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28); */
   border-radius: 8px;
   width: 200px;
   text-align: center;
@@ -71,7 +172,6 @@
   margin: 20px;
   padding: 40px;
   background-color: #7aeefb40;
-  /* box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28); */
   border-radius: 100%;
   width: 105px;
   height: 100px;
@@ -98,4 +198,4 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-}
+} */
