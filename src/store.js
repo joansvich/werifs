@@ -1,5 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
+// import createSagaMiddleware from 'redux-saga'
+
 import rootReducer from './reducers';
 
 const initialState = {
@@ -7,6 +9,10 @@ const initialState = {
   participation: []
 };
 
+// create the saga middleware
+// const sagaMiddleware = createSagaMiddleware()
+
+// thunk middleware
 const middleware = [thunk];
 
 const store = createStore(rootReducer, initialState, compose(applyMiddleware(...middleware),

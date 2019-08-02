@@ -1,0 +1,37 @@
+.loading-bar{
+  width: 50%;
+}
+.loading-bar .progress-bar{
+  height: 56px;
+  width: 100%;
+  background: #B0C4CF;
+  background: #B0C4CF;
+  box-shadow: inset 0px 0px 20px #96A7B0;
+  border-radius: 40px;
+}
+.loading-bar  .status-parent{
+  height: 100%;
+  border-radius: 40px;
+}
+.loading-bar  .status-child{
+  height: 100%;
+  width: 100%;
+  background: #8CCD45;
+  box-shadow: inset 0px 0px 20px #ADFC4D;
+  border-radius: 40px;
+  animation: loading 2s 1 ease-in;
+}
+
+.loading-bar .lock {
+  opacity: 0.5;
+}
+
+.loading-bar img{
+  height: 100px;
+}
+
+
+@keyframes loading {
+  0%   { width: 0; }
+  100% { width: 100%}
+}

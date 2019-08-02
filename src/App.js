@@ -17,6 +17,7 @@ import AuthProvider from './providers/AuthProvider';
 import ParticipationProvider from './providers/ParticipationProvider';
 import Game from './pages/Game';
 import { StripeProvider, Elements } from 'react-stripe-elements';
+import Loading from './components/Loading';
 
 // Redux
 import { connect } from 'react-redux';
@@ -25,39 +26,52 @@ import { getParticipations } from './actions/participationActions';
 
 class App extends Component {
 
+  state = {
+    isLoading: true
+  }
+
   async componentDidMount() {
     await this.props.getMe()
     if (this.props.user.username) {
       await this.props.getParticipations()
     }
+    this.setState({
+      isLoading: false
+    })
   }
 
   render() {
+    const { isLoading } = this.state;
     return (
-      <AuthProvider>
-        <ParticipationProvider>
-          <StripeProvider exact apiKey="pk_test_bCVmuIR36FGdiCbTo1dxtji400jIZtcgOB">
-            <Elements>
-              <>
-                <Navbar />
-                <div className="body">
-                  <Switch>
-                    <Route exact path="/" component={HomePage} />
-                    <AnonRoute exact path="/signup" component={Signup} />
-                    <AnonRoute exact path="/login" component={Login} />
-                    <PrivateRoute exact path="/private" component={Private} />
-                    <AdminRoute exact path="/create" component={CreateCars} />
-                    <PrivateRoute exact path="/game" component={Game} />
-                    <PrivateRoute exact path="/checkout" component={Checkout} />
-                    <Route path="" component={NotFound} />
-                  </Switch>
-                </div>
-                <Footer />
-              </>
-            </Elements>
-          </StripeProvider>
-        </ParticipationProvider>
-      </AuthProvider>
+      <>
+        {isLoading && <Loading />}
+        {!isLoading &&
+          // <AuthProvider>
+            <ParticipationProvider>
+              <StripeProvider exact apiKey="pk_test_bCVmuIR36FGdiCbTo1dxtji400jIZtcgOB">
+                <Elements>
+                  <>
+                    <Navbar />
+                    <div className="body">
+                      <Switch>
+                        <Route exact path="/" component={HomePage} />
+                        <AnonRoute exact path="/signup" component={Signup} />
+                        <AnonRoute exact path="/login" component={Login} />
+                        <PrivateRoute exact path="/private" component={Private} />
+                        <AdminRoute exact path="/create" component={CreateCars} />
+                        <PrivateRoute exact path="/game" component={Game} />
+                        <PrivateRoute exact path="/checkout" component={Checkout} />
+                        <Route path="" component={NotFound} />
+                      </Switch>
+                    </div>
+                    <Footer />
+                  </>
+                </Elements>
+              </StripeProvider>
+            </ParticipationProvider>
+          // </AuthProvider>
+        }
+      </>
     )
   }
 }

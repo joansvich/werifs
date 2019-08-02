@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { Player, BigPlayButton, PlayToggle, ControlBar } from 'video-react';
 import './game.css';
 import 'rc-slider/assets/index.css';
-import { withParticipation } from '../providers/ParticipationProvider';
+// import { withParticipation } from '../providers/ParticipationProvider';
 import Button from '../components/Button';
-
 
 
 class game extends Component {
@@ -14,23 +13,23 @@ class game extends Component {
     showInstructions: true
   }
 
-  handleSlider = (e) => {
-    e.preventDefault();
-    const { _id } = this.props.location.state;
-    const position = this.state.slider;
-    this.props.updateParticipation({ _id, position });
-  }
+  // handleSlider = (e) => {
+  //   e.preventDefault();
+  //   const { _id } = this.props.location.state;
+  //   const position = this.state.slider;
+  //   this.props.updateParticipation({ _id, position });
+  // }
 
-  handleClick = (e) => {
-    this.setState({
-      slider: this.state.slider + parseInt(e.target.value)
-    })
-  }
+  // handleClick = (e) => {
+  //   this.setState({
+  //     slider: this.state.slider + parseInt(e.target.value)
+  //   })
+  // }
 
-  handleChange = (event) => {
-    const { name, value } = event.target;
-    this.setState({ [name]: parseInt(value) });
-  }
+  // handleChange = (event) => {
+  //   const { name, value } = event.target;
+  //   this.setState({ [name]: parseInt(value) });
+  // }
 
   handleShowInstructions = () => {
     this.setState({
@@ -38,25 +37,27 @@ class game extends Component {
     })
   }
 
-  renderListCars() {
-    const { position } = this.state
-    return position.map((pos, id) => {
-      return (
-        <li>Posicion: {pos}</li>
-      )
-    })
-  }
+  // renderListCars() {
+  //   const { position } = this.state
+  //   return position.map((pos, id) => {
+  //     return (
+  //       <li>Posicion: {pos}</li>
+  //     )
+  //   })
+  // }
   componentDidMount() {
-    this.props.changeGameMode()
-    this.props.changeShowCard();
+    // this.props.changeGameMode()
+    // this.props.changeShowCard();
   }
   componentWillUnmount() {
-    this.props.changeGameMode()
+    // this.props.changeGameMode()
   }
 
   render() {
-    let showGame = this.props.participationState.listParticipation.length;
+    console.log('game');
+    // let showGame = this.props.participationState.listParticipation.length;
     const { showInstructions } = this.state;
+    const showGame = true;
     return (
       <div className="game">
         {showGame && <>
@@ -113,7 +114,7 @@ class game extends Component {
                 onClick={this.handleClick}
               />
             </div>
-            {this.renderListCars()}
+            {/* {this.renderListCars()} */}
           </div>
         </>}
         {!showGame && this.props.history.push("/")}
@@ -122,4 +123,4 @@ class game extends Component {
   }
 }
 
-export default withParticipation(game);
+export default game;

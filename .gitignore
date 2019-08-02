@@ -18,6 +18,7 @@
 build.sh
 /Illustrator
 /wireframes
+/documents
 
 npm-debug.log*
 yarn-debug.log*

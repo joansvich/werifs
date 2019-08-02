@@ -3,6 +3,7 @@ import './homepage.css'
 import carsService from '../lib/cars-service';
 import CardCar from '../components/CarCard';
 import Loading from '../components/Loading';
+import LoadingBar from '../components/LoadingBar';
 import { Link } from 'react-router-dom';
 
 //REDUX
@@ -44,24 +45,20 @@ class HomePage extends Component {
             <div className="header-text">
               <h1>Hacemos realidad tus sueños con muy poco</h1>
               <img src="./images/arrow.png" alt="" />
-              <h2>Participa cada mes en un concurso donde podrás
-ganar hasta 1 coche por sólo 2 € por participación.</h2>
+              <h2>Participa cada mes en un concurso donde podrás ganar hasta un coche por sólo 2 € por participación.</h2>
             </div>
             <div className="header-preset">
               <img src="./images/preset-header.png" alt="" />
             </div>
           </div>
           <div className="header-cta">
-            <Link className="link">Jugar</Link>
+            <Link className="link" to="/game">Jugar</Link>
           </div>
         </section>
         <section className="progress">
           <h1>Progreso mensual del concurso</h1>
-          <div className="progress-bar">
-
-          </div>
-          <p>¡Sólo falta un 13% para desbloquear el siguiente premio!</p>
-        <Link className="link button-how-it-works">Cómo se juega</Link>  
+          <p>¡Cuantos más usuarios participen, más premios se desbloquearán!</p>
+          <LoadingBar />
         </section>
         <section></section>
         <section></section>

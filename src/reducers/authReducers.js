@@ -10,7 +10,6 @@ export default function (state = initialState, action) {
   switch (action.type) {
     case GET_ME:
       return {
-        //Object.assign({}, state, { user: action.payload })
         ...state,
         user: action.payload
       }
